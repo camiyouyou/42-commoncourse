@@ -5,20 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: croussea <croussea@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 20:22:06 by croussea          #+#    #+#             */
-/*   Updated: 2023/11/23 15:12:02 by croussea         ###   ########.fr       */
+/*   Created: 2024/01/15 11:50:06 by croussea          #+#    #+#             */
+/*   Updated: 2024/01/15 11:52:25 by croussea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_memcmp(void *s1, const void *s2, unsigned int n)
+int	ft_memcmp(void *s1, const void *s2, size_t n)
 {
-	unsigned int	i;
-    const unsigned char *u1;
-    const unsigned char *u2;
+	size_t              i;
+	const unsigned char	*u1;
+	const unsigned char	*u2;
 
 	i = 0;
-    u1 = s1;
-    u2 = s2;
+	u1 = s1;
+	u2 = s2;
 	if (!n)
 	{
 		return (0);

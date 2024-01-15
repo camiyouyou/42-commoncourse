@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: croussea <croussea@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 16:54:26 by croussea          #+#    #+#             */
-/*   Updated: 2023/11/20 18:07:01 by croussea         ###   ########.fr       */
+/*   Created: 2024/01/15 13:20:53 by croussea          #+#    #+#             */
+/*   Updated: 2024/01/15 13:37:48 by croussea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	*ft_strchr(const char *str, int c)
+char	*ft_strchr(const char *str, int c)
 {
-
 	while (*str != '\0' && *str != c)
 	{
 		str++;
 	}
 	if (*str == c)
-		return ((char*)str);
+		return ((char *)str);
 	else
 		return (NULL);
-}	
+}

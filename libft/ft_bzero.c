@@ -1,7 +1,19 @@
-void *ft_bzero(void *ptr, unsigned int num)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: croussea <croussea@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/15 11:41:47 by croussea          #+#    #+#             */
+/*   Updated: 2024/01/15 11:43:27 by croussea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+void	ft_bzero(void *ptr, size_t num)
 {
-	unsigned char *p;
-	unsigned int i;
+	unsigned char	*p;
+	size_t          i;
 
 	p = ptr;
 	i = 0;
