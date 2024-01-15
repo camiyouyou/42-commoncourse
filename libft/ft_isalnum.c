@@ -10,23 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(char *str)
+int	ft_isalnum(int c)
 {
-	int	i;
-	int	c;
-
-	i = 0;
-	while (str[i] != '\0')
+	if ((c >= 48 && c <= 57) || (c >= 65 && c <= 90))
 	{
-		c = str[i];
-		if ((c >= 48 && c <= 57) || (c >= 65 && c <= 90))
-		{
-			i++;
-		}
-		else
-		{
-			return (0);
-		}
+		return (1);
 	}
-	return (1);
+	else
+	{
+		return (0);
+	}
 }
