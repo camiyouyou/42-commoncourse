@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 #include <stdio.h>
 
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
+unsigned int	ft_strlcat(char *dest, char *src, size_t size)
 {
-	unsigned int	i;
-	unsigned int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	while (i < size && dest[i] != '\0')
