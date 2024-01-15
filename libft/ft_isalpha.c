@@ -10,23 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(char *str)
+int	ft_isalpha(int c)
 {
-	int	i;
-	int	c;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		c = str[i];
 		if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 		{
-			i++;
+			return (1);
 		}
 		else
 		{
 			return (0);
 		}
-	}
-	return (1);
 }
