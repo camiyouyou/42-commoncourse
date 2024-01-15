@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memmove(void *dest, const void *src, size_t len)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	unsigned char		*d;
 	const unsigned char	*s;
 
-	d = dest;
+	d = dst;
 	s = src;
-	if (dest == src)
+	if (dst == src)
 	{
-		return (dest);
+		return (dst);
 	}
 	if (s < d)
 	{
@@ -27,11 +27,11 @@ void	*ft_memmove(void *dest, const void *src, size_t len)
 		{
 			*(d + len) = *(s + len);
 		}
-		return (dest);
+		return (dst);
 	}
 	while (len--)
 	{
 		*d++ = *s++;
 	}
-	return (dest);
+	return (dst);
 }
