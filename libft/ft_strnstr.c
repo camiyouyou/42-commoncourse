@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strnstr(char	*str, char *to_find, unsigned int size)
+char	*ft_strnstr(char	*str, char *to_find, size_t size)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;
