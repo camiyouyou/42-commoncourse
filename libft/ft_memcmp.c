@@ -6,13 +6,13 @@
 /*   By: croussea <croussea@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:50:06 by croussea          #+#    #+#             */
-/*   Updated: 2024/01/15 11:52:25 by croussea         ###   ########.fr       */
+/*   Updated: 2024/01/15 15:28:15 by croussea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_memcmp(void *s1, const void *s2, size_t n)
 {
-	size_t              i;
+	size_t				i;
 	const unsigned char	*u1;
 	const unsigned char	*u2;
 
