@@ -11,17 +11,17 @@
 /* ************************************************************************** */
 #include <stddef.h>
 
-void	*ft_memchr(const char *str, int c, size_t len)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < len && str[i] != c)
+	while (i < n && ((unsigned char *)s)[i] != c)
 	{
 		i++;
 	}
-	if (i < len && str[i] == c)
-		return ((void *)(unsigned char *)str + i);
+	if (i < n && ((unsigned char *)s)[i] == c)
+		return ((void *)((unsigned char *)s + i));
 	else
 		return (NULL);
 }
