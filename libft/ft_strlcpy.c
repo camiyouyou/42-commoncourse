@@ -11,19 +11,19 @@
 /* ************************************************************************** */
 #include <stdio.h>
 
-unsigned int	ft_strlcpy(char *dest, const char *src, size_t size)
+unsigned int	ft_strlcpy(char * restrict dst, const char * restrict src, size_t dstsize)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < size && dest[i] != '\0')
+	while (i < size && dst[i] != '\0')
 	{
-		dest[i] = src[i];
+		dst[i] = src[i];
 		i++;
 	}
 	if (i < size)
 	{
-		dest[i] = '\0';
+		dst[i] = '\0';
 	}
 	while (src[i] != '\0')
 	{
