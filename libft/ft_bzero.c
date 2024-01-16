@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_bzero(void *ptr, size_t num)
+void	ft_bzero(void *s, size_t num)
 {
 	unsigned char	*p;
 	size_t			i;
 
-	p = ptr;
+	p = s;
 	i = 0;
 	while (i < num)
 	{
@@ -23,5 +23,5 @@ void	ft_bzero(void *ptr, size_t num)
 		p++;
 		i++;
 	}
-	return (ptr);
+	return (s);
 }
