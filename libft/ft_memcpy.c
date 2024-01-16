@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memcpy(void *dst, const void *restrict src, size_t num)
+void	*ft_memcpy(void *dst, const void *restrict src, size_t n)
 {
 	unsigned char		*d;
 	const unsigned char	*s;
@@ -19,7 +19,7 @@ void	*ft_memcpy(void *dst, const void *restrict src, size_t num)
 	i = 0;
 	d = dst;
 	s = src;
-	while (i < num)
+	while (i < n)
 	{
 		*d++ = *s++;
 		i++;
