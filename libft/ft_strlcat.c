@@ -11,25 +11,25 @@
 /* ************************************************************************** */
 #include <stdio.h>
 
-unsigned int	ft_strlcat(char *dest, char *src, size_t size)
+unsigned int	ft_strlcat(char * restrict dst, const char * restrict src, size_t dstsize)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
-	while (i < size && dest[i] != '\0')
+	while (i < size && dst[i] != '\0')
 	{
 		i++;
 	}
 	j = 0;
 	while ((i + j + 1) < size && src[j] != '\0')
 	{
-		dest[i + j] = src [j];
+		dst[i + j] = src [j];
 		j++;
 	}
 	if (i < size)
 	{
-		dest[i + j] = '\0';
+		dst[i + j] = '\0';
 	}
 	while (src[j] != '\0')
 	{
