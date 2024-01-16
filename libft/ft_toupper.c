@@ -10,21 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_toupper(char *str)
+char	*ft_toupper(int c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
+	if (c >= 'a' && c <= 'z')
 	{
-		if (str[i] >= 'a' && str[i] <= 'z')
-		{
-			str[i] = str[i] - 32;
-		}
-		else
-		{
-		}
-		i++;
+		c = c - 32;
 	}
-	return (str);
+	return (c);
 }
