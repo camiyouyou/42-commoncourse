@@ -25,7 +25,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strdup(char *src)
+char	*ft_strdup(const char *s1)
 {
 	char	*dest;
 	int		len;
@@ -33,7 +33,7 @@ char	*ft_strdup(char *src)
 
 	dest = 0;
 	i = 0;
-	len = ft_strlen((char *) src);
+	len = ft_strlen((char *) s1);
 	dest = malloc(sizeof(char) * (len + 1));
 	if (dest == NULL)
 	{
@@ -41,9 +41,9 @@ char	*ft_strdup(char *src)
 	}
 	else
 	{
-		while (src[i])
+		while (s1[i])
 		{
-			dest[i] = src[i];
+			dest[i] = s1[i];
 			i++;
 		}
 		dest[i] = '\0';
