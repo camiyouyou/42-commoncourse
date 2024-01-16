@@ -23,48 +23,38 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_totalen(int size, char **strs, char *sep)
-{
-	int	j;
-	int	len;
-
-	len = 0;
-	j = 0;
-	if (size == 0)
-		return (0);
-	while (j < size)
-	{
-		len = len + ft_strlen(strs[j++]);
-	}
-	len = len + (ft_strlen(sep) * (size - 1));
-	return (len);
-}
-
-char	*ft_strjoin(int size, char **strs, char *sep)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
 	int		i;
 	int		j;
 	int		len;
-	int		s;
 
 	i = 0;
+	j = 0;
 	s = 0;
-	len = ft_totalen(size, strs, sep);
+	len = ft_strlen(s1) + ft_strlen(s2);
 	str = (char *)malloc(sizeof(char) * (len + 1));
-	while (i < size)
+	if (str < 0)
+		return (NULL);
+	while (i < len && s1[i] != '\0')
 	{
-		j = 0;
-		while (strs[i][j] != '\0')
-			str[s++] = strs[i][j++];
-		if (i < size - 1)
-		{
-			j = 0;
-			while (sep[j] != '\0')
-				str[s++] = sep[j++];
-		}
-		i++;
+		str[i] = *s1[i];
+  		i++;
 	}
-	str[s] = '\0';
-	return (str);
+	j = 0;
+	while ((i + j + 1) < len && s2[j] != '\0')
+	{
+		str[i + j] = s2[j];
+		j++;
+	}
+	if (i < len)
+	{
+		dest[i + j] = '\0';
+	}
+	while (src[j] != '\0')
+	{
+		j++;
+	} 
+	return (str); 
 }
