@@ -6,18 +6,12 @@
 /*   By: croussea <croussea@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:44:00 by croussea          #+#    #+#             */
-/*   Updated: 2023/11/13 19:37:19 by croussea         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:50:32 by croussea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
 int	ft_isalnum(int c)
 {
-	if ((c >= 48 && c <= 57) || (c >= 65 && c <= 90))
-	{
-		return (1);
-	}
-	else
-	{
-		return (0);
-	}
+	return (ft_isalpha(c) || ft_isdigit(c));
 }

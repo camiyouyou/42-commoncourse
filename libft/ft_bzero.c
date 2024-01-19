@@ -9,6 +9,7 @@
 /*   Updated: 2024/01/15 15:20:47 by croussea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
@@ -23,5 +24,4 @@ void	ft_bzero(void *s, size_t n)
 		p++;
 		i++;
 	}
-	return (s);
 }

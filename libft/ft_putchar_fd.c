@@ -1,7 +1,18 @@
-void    ft_putchar_fd(char c, int fd)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: croussea <croussea@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/18 15:37:17 by croussea          #+#    #+#             */
+/*   Updated: 2024/01/18 15:38:12 by croussea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+#include "libft.h"
+
+void	ft_putchar_fd(char c, int fd)
 {
-    if (ft_isascii(c))
-        write (fd, &c, 1);
+	if (ft_isascii(c))
+		write (fd, &c, 1);
 }
-
-

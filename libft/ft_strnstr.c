@@ -9,8 +9,9 @@
 /*   Updated: 2024/01/15 13:59:21 by croussea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-char	*ft_strnstr(const char *haystack, char *needle, size_t len)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
 	size_t	j;
@@ -18,7 +19,7 @@ char	*ft_strnstr(const char *haystack, char *needle, size_t len)
 	i = 0;
 	j = 0;
 	if (*needle == '\0')
-		return (str);
+		return ((char *)haystack);
 	while (haystack[i] != '\0' && i < len)
 	{
 		while (haystack[i + j] == needle[j]
@@ -28,7 +29,7 @@ char	*ft_strnstr(const char *haystack, char *needle, size_t len)
 		}
 		if (needle[j] == '\0')
 		{
-			return (haystack + i);
+			return ((char *)haystack + i);
 		}
 		i++;
 		j = 0;

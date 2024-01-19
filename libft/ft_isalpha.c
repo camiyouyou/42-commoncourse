@@ -6,18 +6,18 @@
 /*   By: croussea <croussea@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:27:13 by croussea          #+#    #+#             */
-/*   Updated: 2024/01/15 14:27:46 by croussea         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:36:39 by croussea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isalpha(int c)
 {
-		if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-		{
-			return (1);
-		}
-		else
-		{
-			return (0);
-		}
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
 }

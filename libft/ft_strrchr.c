@@ -6,29 +6,23 @@
 /*   By: croussea <croussea@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:59:43 by croussea          #+#    #+#             */
-/*   Updated: 2024/01/15 14:00:11 by croussea         ###   ########.fr       */
+/*   Updated: 2024/01/19 16:30:09 by croussea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
 char	*ft_strrchr(const char *str, int c)
 {
 	int	i;
-	int	j;
 
-	i = 0;
-	while (*str != '\0')
+	i = ft_strlen(str);
+	if (c == 0)
+		return ((char *)(str + i));
+	while (i >= 0)
 	{
-		str++;
-		i++;
+		if (str[i] == (char)c)
+			return ((char *)(str + i));
+		i--;
 	}
-	j = 0;
-	while ((*str != c) && (j < i))
-	{
-		str--;
-		j++;
-	}
-	if (*str == c)
-		return ((char *)str);
-	else
-		return (NULL);
+	return (NULL);
 }
