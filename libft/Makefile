@@ -6,12 +6,11 @@
 #    By: croussea <croussea@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/29 17:55:47 by croussea          #+#    #+#              #
-#    Updated: 2024/01/18 17:21:07 by croussea         ###   ########.fr        #
+#    Updated: 2024/01/30 11:31:58 by croussea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
-
+NAME	=   libft.a
 SRCS	=	ft_atoi.c \
 			ft_bzero.c \
 			ft_calloc.c \
@@ -21,7 +20,6 @@ SRCS	=	ft_atoi.c \
 			ft_isdigit.c \
 			ft_isprint.c \
 			ft_itoa.c \
-			ft_memcpy.c \
 			ft_memchr.c \
 			ft_memcmp.c \
 			ft_memcpy.c \
@@ -46,38 +44,43 @@ SRCS	=	ft_atoi.c \
 			ft_strtrim.c \
 			ft_substr.c \
 			ft_tolower.c \
-			ft_toupper.c 
+			ft_toupper.c
 
-OBJS = $(SRCS:.c=.o)
+SRCS_B	=   ft_lstadd_back.c \
+			ft_lstadd_front.c \
+			ft_lstclear.c \
+			ft_lstdelone.c \
+			ft_lstiter.c \
+			ft_lstlast.c \
+			ft_lstmap.c \
+			ft_lstnew.c \
+			ft_lstsize.c
 
-RM   = rm -f
-
-LIBC = ar -rcs
-
-CC = cc
-
-INCS = .
+OBJS	= $(SRCS:.c=.o)
+OBJS_B	= $(SRCS_B:.c=.o)
+RM		= rm -f
+LIBC	= ar -rcs
+FLAGS	= -Wall -Wextra -Werror
+INCS	= .
 
 .c.o :
 	${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I${INCS}
 
-$(NAME): ${OBJS} 
+$(NAME): ${OBJS}
 	${LIBC} $(NAME) $(OBJS)
 
 all: $(NAME)
- 
 
-FLAGS = -Wall -Wextra -Werror
-
-	
-clean: 
-	rm -rf $(OBJS)
-
+bonus: $(NAME) $(OBJS_B)
+	${LIBC} $(NAME) $(OBJS_B)
+    
 fclean: clean
-	rm -rf $(NAME)
+	$(RM) $(NAME) $(bonus)
 
-re: fclean $(NAME)
+clean:
+	$(RM) -f $(OBJS) $(OBJS_B)
+    
+re: fclean all
 
-.PHONY: clean fclean re
-
+.PHONY: all bonus clean fclean re .c.o
 
