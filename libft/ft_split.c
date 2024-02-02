@@ -6,7 +6,7 @@
 /*   By: croussea <croussea@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:22:55 by croussea          #+#    #+#             */
-/*   Updated: 2024/01/19 11:49:37 by croussea         ###   ########.fr       */
+/*   Updated: 2024/01/31 13:43:21 by croussea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	free_array(size_t i, char **array)
 	free(array);
 }
 
-char	**split(char const *s, char c, char **array, size_t line_count)
+char	**ft_split2(char const *s, char c, char **array, size_t line_count)
 {
 	size_t	i;
 	size_t	j;
@@ -93,6 +93,6 @@ char	**ft_split(char const *s, char c)
 	new = (char **)malloc(sizeof(char *) * (len + 1));
 	if (!new)
 		return (NULL);
-	new = split(s, c, new, len);
+	new = ft_split2(s, c, new, len);
 	return (new);
 }
