@@ -1,28 +1,25 @@
 
-void    ft_putnbr_fd(int n, int fd)
+void    ft_putnbr_ap(int n, int base)
 {
-    if (n == -2147483648)
-    {
-        write(fd, "-2147483648", 11);
-        return ;
-    }
+    int    i;
+    char    *symbols;
+
+    symbols = "0123456789abcdef"
     if (n < 0)
     {
-        ft_putchar_fd('-', fd);
-        n = -n;
+        ft_putchar_ap('-');
+        return ft_putnbr_ap(-n, base) + 1;
     }
-    if (n > 9)
-    {
-        ft_putnbr_fd((n / 10), fd);
-        ft_putnbr_fd((n % 10), fd);
-    }
+    else if (n < base)
+        return ft_putchar_ap(symbols[n]);
     else
     {
-        ft_putchar_fd(n + 48, fd);
+        i = ft_putnbr_ap((n / base), base);
+        return i + ft_putnbr_ap((n % base), base);
     }
 }
 
-void    ft_putstr_fd(char *s, int fd)
+void    ft_putstr_ap(char *s, int fd)
 {
     int    i;
 
@@ -34,9 +31,9 @@ void    ft_putstr_fd(char *s, int fd)
     }
 }
 
-void    ft_putchar_fd(char c, int fd)
+void    ft_putchar_ap(char c, int fd)
 {
     if (ft_isascii(c))
-        write (fd, &c, 1);
+        return write (1, &c, 1);
 }
 
