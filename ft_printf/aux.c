@@ -19,7 +19,7 @@ void    ft_putnbr_ap(int n, int base)
     }
 }
 
-void    ft_putstr_ap(char *s, int fd)
+void    ft_putstr_ap(char *s)
 {
     int    i;
 
@@ -29,9 +29,10 @@ void    ft_putstr_ap(char *s, int fd)
         ft_putchar_fd(s[i], fd);
         i++;
     }
+    return (i);
 }
 
-void    ft_putchar_ap(char c, int fd)
+void    ft_putchar_ap(char c)
 {
     if (ft_isascii(c))
         return write (1, &c, 1);
