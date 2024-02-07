@@ -7,6 +7,7 @@ int ft_printf(const char *s, ...)
     i = 0;
     while (s)
     {
+        
         if (*s == '%')
         {
             i++;
@@ -14,8 +15,13 @@ int ft_printf(const char *s, ...)
             {
                 ft_putchar_ap(va_arg(s, ap));
             }
+            else if (*s == s)
+            {
+                ft_putstr_ap(s, ap);
+            }
+            else if (*s == p)
         }
-        ft_putchar(s[i]);
+        ft_putstr_ap(s);
     }
     va_end(ap, s);
     
