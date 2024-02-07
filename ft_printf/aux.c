@@ -1,5 +1,5 @@
 
-void    ft_putnbr_ap(int n, int base)
+int    ft_putnbr_ap(int n, int base)
 {
     int    i;
     char    *symbols;
@@ -19,7 +19,7 @@ void    ft_putnbr_ap(int n, int base)
     }
 }
 
-void    ft_putstr_ap(char *s)
+int    ft_putstr_ap(char *s)
 {
     int    i;
 
@@ -32,9 +32,29 @@ void    ft_putstr_ap(char *s)
     return (i);
 }
 
-void    ft_putchar_ap(char c)
+int    ft_putchar_ap(char c)
 {
     if (ft_isascii(c))
         return write (1, &c, 1);
+}
+
+int    ft_hexa(unsigned long n, char format)
+{
+    char    *base;
+    unsigned int    num;
+    int    i;
+    unsigned int    base_len;
+
+    if (format == 'x')
+        base = "0123456789abcdef";
+    else
+        base = "0123456789ABCDEF";
+    i = 0;
+    num = (unsigned int)n;
+    base_len = ft_strlen(base);
+    if (num > (base_len - 1))
+        i += ft_hexa(num / base_len, format);
+    i += ft_putchar_ap(*(base + num % base_len);
+    return (i);
 }
 
