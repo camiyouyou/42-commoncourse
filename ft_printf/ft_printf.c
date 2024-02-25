@@ -20,8 +20,7 @@ int ft_printf(const char *s, ...)
             else if (*s == d || *s == i)
                 ft_putnubr_ap(s, ap);
             else if (*s == u)
-                
-            
+                ft_putunsigned(s);
         }
         // il manque d, i, u
         ft_putstr_ap(s);
