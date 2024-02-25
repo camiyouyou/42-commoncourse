@@ -12,18 +12,20 @@ int ft_printf(const char *s, ...)
         {
             i++;
             if (*s == c)
-            {
                 ft_putchar_ap(va_arg(s, ap));
-            }
-            else if (*s == s || *s == p)
-            {
+            else if (*s == s)
                 ft_putstr_ap(s, ap);
-            }
-            else if (*s == x || *s == X)
+            else if (*s == x || *s == X || *s == p)
                 ft_hexa(s, ap);
+            else if (*s == d || *s == i)
+                ft_putnubr_ap(s, ap);
+            else if (*s == u)
+                
+            
         }
         // il manque d, i, u
         ft_putstr_ap(s);
+        s++;
     }
     va_end(ap, s);
     
