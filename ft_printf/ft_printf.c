@@ -15,12 +15,14 @@ int ft_printf(const char *s, ...)
             {
                 ft_putchar_ap(va_arg(s, ap));
             }
-            else if (*s == s)
+            else if (*s == s || *s == p)
             {
                 ft_putstr_ap(s, ap);
             }
-            else if (*s == p)
+            else if (*s == x || *s == X)
+                ft_hexa(s, ap);
         }
+        // il manque d, i, u
         ft_putstr_ap(s);
     }
     va_end(ap, s);
