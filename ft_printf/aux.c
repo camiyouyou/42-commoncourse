@@ -54,7 +54,7 @@ int    ft_hexa(unsigned long n, char format)
     base_len = ft_strlen(base);
     if (num > (base_len - 1))
         i += ft_hexa(num / base_len, format);
-    i += ft_putchar_ap(*(base + num % base_len);
+    i += ft_putchar_ap(*(base + num % base_len));
     return (i);
 }
 
