@@ -3,7 +3,6 @@ int ft_printf(const char *s, ...)
     va_list ap;
 
     va_start(ap, s);
-    i = 0;
     if (*s == '%')
 {
     s++; // Passer au caractère suivant après '%'
