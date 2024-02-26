@@ -4,7 +4,7 @@ int    ft_putnbr_ap(int n, int base)
     int    i;
     char    *symbols;
 
-    symbols = "0123456789abcdef"
+    symbols = "0123456789abcdef";
     if (n < 0)
     {
         ft_putchar_ap('-');
@@ -26,7 +26,7 @@ int    ft_putstr_ap(char *s)
     i = 0;
     while (s[i] != '\0')
     {
-        ft_putchar_fd(s[i], fd);
+        ft_putchar_ap(s[i]);
         i++;
     }
     return (i);
