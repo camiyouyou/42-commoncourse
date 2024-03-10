@@ -1,10 +1,8 @@
 NAME	=   libftprintf.a
 
-LIBFTNAME = libft.a
-LIBFTDIR = ./libft
-
 SRCS	=	ft_printf.c \
 			ft_strlen.c \
+			utils.c \
 			aux.c
 
 OBJS	= $(SRCS:.c=.o)
@@ -21,11 +19,6 @@ $(NAME): ${OBJS}
 	
 all: $(NAME)
 
-makelibft:
-	@make -C $(LIBFTDIR)
-	@cp $(LIBFTDIR)/$(LIBFTNAME) .
-	@mv $(LIBFTNAME) $(NAME)
-
 fclean: clean
 	$(RM) $(NAME) $(bonus)
 
@@ -34,5 +27,6 @@ clean:
     
 re: fclean all
 
-.PHONY: all makelibft clean fclean re .c.o
+.PHONY: all clean fclean re .c.o
+
 

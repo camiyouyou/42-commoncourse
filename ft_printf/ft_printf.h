@@ -14,9 +14,11 @@ int    ft_putnbr_ap(int n, int base);
 int    ft_putstr_ap(char *s);
 int    ft_putchar_ap(int c);
 int    ft_hexa(unsigned long n, char format);
-int    ft_putunsigned(unsigned long n);
+int    ft_putunsigned(unsigned int n);
 int    ft_printf(const char *s, ...);
-unsigned long    ft_strlen(char *s);
+int    ft_ptr(size_t num);
+int    ft_print_ptr(size_t nbr);
+int print_format(char s, va_list ap);
 
 #endif
 

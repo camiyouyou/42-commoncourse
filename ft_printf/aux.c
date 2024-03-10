@@ -6,6 +6,11 @@ int    ft_putnbr_ap(int n, int base)
     char    *symbols;
 
     symbols = "0123456789abcdef";
+    if (n == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		return (11);
+	}
     if (n < 0)
     {
         ft_putchar_ap('-');
@@ -25,6 +30,12 @@ int    ft_putstr_ap(char *s)
     int    i;
 
     i = 0;
+    
+    if (!s)
+    {
+        write (1, "(null)", 6);
+        return (6);
+    }
     while (s[i] != '\0')
     {
         ft_putchar_ap(s[i]);
@@ -43,7 +54,6 @@ int    ft_hexa(unsigned long n, char format)
     char    *base;
     unsigned int    num;
     int    i;
-    unsigned int    base_len;
 
     if (format == 'x')
         base = "0123456789abcdef";
@@ -51,23 +61,22 @@ int    ft_hexa(unsigned long n, char format)
         base = "0123456789ABCDEF";
     i = 0;
     num = (unsigned int)n;
-    base_len = ft_strlen(base);
-    if (num > (base_len - 1))
-        i += ft_hexa(num / base_len, format);
-    i += ft_putchar_ap(*(base + num % base_len));
+    if (num >= 16)
+        i += ft_hexa(num / 16, format);
+    i += ft_putchar_ap(*(base + num % 16));
     return (i);
 }
 
-int	ft_putunsigned(unsigned long n)
+int	ft_putunsigned(unsigned int n)
 {
 	int		len;
 	char	*base;
 
 	len = 0;
 	base = "0123456789";
-	if (n > (ft_strlen(base) - 1))
-		len += ft_putunsigned(n / ft_strlen(base));
-	len += ft_putchar_ap(*(base + (n % ft_strlen(base))));
+	if (n >= 10)
+		len += ft_putunsigned(n / 10);
+	len += ft_putchar_ap(*(base + (n % 10)));
 	return (len);
 }
 
