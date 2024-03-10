@@ -1,3 +1,4 @@
+#include "ft_printf.h"
 
 int    ft_putnbr_ap(int n, int base)
 {
@@ -32,10 +33,9 @@ int    ft_putstr_ap(char *s)
     return (i);
 }
 
-int    ft_putchar_ap(char c)
+int    ft_putchar_ap(int c)
 {
-    if (ft_isascii(c))
-        return write (1, &c, 1);
+    return write(1, &c, 1);
 }
 
 int    ft_hexa(unsigned long n, char format)
@@ -67,7 +67,7 @@ int	ft_putunsigned(unsigned long n)
 	base = "0123456789";
 	if (n > (ft_strlen(base) - 1))
 		len += ft_putunsigned(n / ft_strlen(base));
-	len += ft_putchar(*(base + (n % ft_strlen(base))));
+	len += ft_putchar_ap(*(base + (n % ft_strlen(base))));
 	return (len);
 }
 
