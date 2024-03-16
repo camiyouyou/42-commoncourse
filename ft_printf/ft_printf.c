@@ -40,6 +40,10 @@ int	ft_printf(const char *s, ...)
 
 	va_start(ap, s);
 	count = 0;
+	if (!s)
+	{
+		return (0);
+	}
 	while (*s)
 	{
 		if (*s == '%')
