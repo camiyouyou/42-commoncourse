@@ -1,98 +1,142 @@
-/* Mes idées pour le projet
- 
- utiliser les listes
- 
- dans ces listes:
- 
- lstnew pour le premier element
- lst add back pour les lignes suivantes
- lst clear s il y a une erreur
- 
- réadapter split pour partitionner le texte avec chaque \n et au lieu de passer la substr vers un array, passer vers une liste
- 
- les fonctions à réadapter de libft seront donc:
- - split
- - substr
- - strdup
- - strlen
- - strlcpy
- + les listes;
- 
- flow du projet:
- - lire le fichier et compter le nombre de lignes et leur longueur;
- - splitter le fichier en differentes lignes
- - chaque ligne devient une entree de la liste chainee
- - cette liste doit être stockée
- - chaque fois qu'on appelle le programme, le programme lit et renvoie la ligne d'après (utilisant une fonction liste qui renvoie next dans la liste chainee).
- 
- */
-typedef struct s_list
-{
-    void            *content;
-    struct s_list    *next;
-}                    t_list;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: croussea <croussea@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/08 17:20:49 by croussea          #+#    #+#             */
+/*   Updated: 2024/04/08 17:20:52 by croussea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void    read_and_stock()
+#include "get_next_line.h"
+
+t_list	*get_last_elem(t_list *stash)
 {
-    
+	t_list	*node;
+
+	node = stash;
+	while (node && node->next)
+		node = node->next;
+	return (node);
 }
 
-void    add_to_stash()
+int	found_line(t_list *stash)
 {
-    
+	int		i;
+	t_list	*node;
+
+	if (stash == NULL)
+		return (0);
+	node = get_last_elem(stash);
+	i = 0;
+	while (node->content[i])
+	{
+		if (node->content[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
-void    extract_line()
+void	add_to_stash(char *buf, t_list **stash, int read_stuff)
 {
-    
+	int		i;
+	t_list	*last;
+	t_list	*new;
+
+	new = malloc(sizeof(t_list));
+	if (new == NULL || stash == NULL)
+		return ;
+	new->next = NULL;
+	new->content = malloc (sizeof(char) * (read_stuff + 1));
+	if (new->content == NULL)
+		return ;
+	i = 0;
+	while (buf[i] != '\0' && i < read_stuff)
+	{
+		new->content[i] = buf[i];
+		i++;
+	}
+	new->content[i] = '\0';
+	if (*stash == NULL)
+	{
+		*stash = new;
+		return ;
+	}
+	last = get_last_elem(*stash);
+	last->next = new;
 }
 
-void    free_stash()
+//clean stash after reading line so as to pass to next line. 
+// only cleans relevant characters
+
+void	clean_stash(t_list **stash)
 {
-    
+	t_list	*last;
+	t_list	*clean;
+	int		i;
+	int		j;
+
+	clean = malloc(sizeof(t_list));
+	if (stash == NULL || clean == NULL)
+		return ;
+	clean->next = NULL;
+	last = get_last_elem(*stash);
+	i = 0;
+	while (last->content[i] && last->content[i] != '\n')
+		i++;
+	if (last->content[i] && last->content[i] == '\n')
+		i++;
+	clean->content = malloc(sizeof(char) * (ft_strlen(last->content) - i) + 1);
+	if (clean->content == NULL)
+		return ;
+	j = 0;
+	while (last->content[i])
+		clean->content[j++] = last->content[i++];
+	clean->content[j] = '\0';
+	free_stash(*stash);
+	*stash = clean;
 }
 
-int     get_line_length(*line)
+char	*get_next_line(int fd)
 {
-    while (read(fd, &line, 0) != "\n")
-    {
-        content[i++] = line [j++];
-    }
+	static t_list	*stash;
+	char			*line;
+
+	if (BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0 || fd < 0)
+		return (NULL);
+	line = NULL;
+	read_and_stock(fd, &stash);
+	if (stash == NULL)
+		return (NULL);
+	extract_line(stash, &line);
+	clean_stash(&stash);
+	if (line[0] == '\0')
+	{
+		free_stash(stash);
+		stash = NULL;
+		free(line);
+		return (NULL);
+	}
+	return (line);
 }
 
-/* 
-
- A modifier sans del; faire en sorte que chaque node = NULL
-void    ft_lstdelone(t_list *lst, void (del)(void*))
+/* int	main()
 {
-    if (lst == NULL || del == NULL)
-        return ;
-    del (lst->content);
-    free (lst);
-}
+	
+	int	fd;
+	char *line;
 
-void    ft_lstclear(t_list **lst, void (*del)(void*))
-{
-    t_list    *tmp;
-
-    if (lst == NULL || del == NULL || *lst == NULL)
-        return ;
-    while (*lst && lst)
-    {
-        tmp = (*lst)->next;
-        ft_lstdelone(*lst, del);
-        *lst = tmp;
-    }
+	fd = open("read_error.txt" , O_RDONLY);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
+		printf("%s", line);
+		free(line);
+	}
+	return (0);
 } */
-
-char *get_next_line(int fd)
-{
-    char    *next_line;
-    
-    read(fd, &next_line, 0);
-}
-
-int main ()
-{
-    
-}
