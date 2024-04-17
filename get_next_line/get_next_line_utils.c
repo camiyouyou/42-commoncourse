@@ -27,6 +27,8 @@ void	read_and_stock(int fd, t_list **stash)
 		if ((read_stuff == 0 && *stash == NULL) || read_stuff == -1)
 		{
 			free(buf);
+			free_stash(*stash);
+			*stash = NULL;
 			return ;
 		}
 		buf[read_stuff] = '\0';
@@ -68,8 +70,6 @@ void	extract_line(t_list *stash, char **line)
 	if (stash == NULL)
 		return ;
 	make_line(line, stash);
-	if (*line == NULL || stash == NULL)
-		return ;
 	j = 0;
 	while (stash)
 	{
@@ -102,6 +102,7 @@ void	free_stash(t_list *stash)
 		free(current);
 		current = next;
 	}
+	stash = NULL;
 }
 
 int	ft_strlen(char *s)
