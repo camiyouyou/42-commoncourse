@@ -18,17 +18,16 @@ void	read_and_stock(int fd, t_list **stash)
 	int		read_stuff;
 
 	read_stuff = 1;
-	while (!found_line(*stash) && read_stuff != 0)
+	while (!stash || (!found_line(*stash) && read_stuff != 0))
 	{
 		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 		if (buf == NULL)
 			return ;
-		read_stuff = (int)read(fd, buf, BUFFER_SIZE);
-		if ((read_stuff == 0 && *stash == NULL) || read_stuff == -1)
+		read_stuff = read(fd, buf, BUFFER_SIZE);
+		if (read_stuff == -1)
 		{
-			free(buf);
 			free_stash(*stash);
-			*stash = NULL;
+			free(buf);
 			return ;
 		}
 		buf[read_stuff] = '\0';
@@ -60,6 +59,7 @@ void	make_line(char **line, t_list *stash)
 		stash = stash->next;
 	}
 	*line = malloc(sizeof(char) * (len + 1));
+	(*line)[len] = '\0';
 }
 
 void	extract_line(t_list *stash, char **line)
@@ -70,8 +70,10 @@ void	extract_line(t_list *stash, char **line)
 	if (stash == NULL)
 		return ;
 	make_line(line, stash);
+	if (*line == NULL || stash == NULL)
+		return ;
 	j = 0;
-	while (stash)
+	while (stash && stash->content)
 	{
 		i = 0;
 		while (stash->content[i])
@@ -91,16 +93,16 @@ void	extract_line(t_list *stash, char **line)
 //free stash
 void	free_stash(t_list *stash)
 {
-	t_list	*current;
-	t_list	*next;
+	t_list	*tmp;
 
-	current = stash;
-	while (current)
+	if (NULL == stash)
+		return ;
+	while (stash)
 	{
-		free(current->content);
-		next = current->next;
-		free(current);
-		current = next;
+		tmp = stash->next;
+		free(stash->content);
+		free(stash);
+		stash = tmp;
 	}
 	stash = NULL;
 }

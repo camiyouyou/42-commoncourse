@@ -47,7 +47,7 @@ void	add_to_stash(char *buf, t_list **stash, int read_stuff)
 	t_list	*new;
 
 	new = malloc(sizeof(t_list));
-	if (new == NULL)
+	if (new == NULL || stash == NULL)
 		return ;
 	new->next = NULL;
 	new->content = malloc (sizeof(char) * (read_stuff + 1));
@@ -80,11 +80,8 @@ void	clean_stash(t_list **stash)
 	int		j;
 
 	clean = malloc(sizeof(t_list));
-	if (clean == NULL)
-	{
-		free_stash(*stash);
+	if (stash == NULL || clean == NULL)
 		return ;
-	}
 	clean->next = NULL;
 	last = get_last_elem(*stash);
 	i = 0;
@@ -94,64 +91,56 @@ void	clean_stash(t_list **stash)
 		i++;
 	clean->content = malloc(sizeof(char) * (ft_strlen(last->content) - i) + 1);
 	if (clean->content == NULL)
-	{
-		free_stash(*stash);
 		return ;
-	}
 	j = 0;
 	while (last->content[i])
 		clean->content[j++] = last->content[i++];
 	clean->content[j] = '\0';
-	free(last->content);
-	free(last);
-	last = NULL;
+	free_stash(*stash);
 	*stash = clean;
 }
 
 char	*get_next_line(int fd)
 {
-	static t_list	*stash = NULL;
+	static t_list	*stash;
 	char			*line;
 
 	if (BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0 || fd < 0)
+	{
+		free_stash(stash);
+		stash = NULL;
 		return (NULL);
+	}
 	line = NULL;
 	read_and_stock(fd, &stash);
 	if (stash == NULL)
 		return (NULL);
 	extract_line(stash, &line);
-	if (stash->content[0] == '\0')
+	clean_stash(&stash);
+	if (line[0] == '\0')
 	{
 		free_stash(stash);
 		stash = NULL;
 		free(line);
 		return (NULL);
 	}
-	clean_stash(&stash);
-	/*if (line[0] == '\0')
-	{
-		free_stash(stash);
-		stash = NULL;
-		free(line);
-		return (NULL);
-	} */
 	return (line);
 }
 
-/*int	main()
+/* int	main()
 {
 	
 	int	fd;
 	char *line;
 
 	fd = open("read_error.txt" , O_RDONLY);
-	int i;
-	i = 20;
-	while (i--)
+	while (1)
 	{
 		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
 		printf("%s", line);
 		free(line);
 	}
 	return (0);
-} */
+}*/
