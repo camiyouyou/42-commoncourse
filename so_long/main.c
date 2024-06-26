@@ -45,4 +45,19 @@
 * PUIS SORTIE
 * PUIS CHECKS **/
 
+int  check_exit(char **map, struct *game, int c, int count_c)
+{
+  t_coordonnees pos_e;
+  t_coordoonnes pos_p;
+  pos_e-> x = j;
+  int i;
+  int j;
+  if (pos_e->y == pos_p->y && pos_e->x == pos_p->x)
+    if  (c == count_c)
+      return 0;
+  return 1;
+}
+
+
+
 
