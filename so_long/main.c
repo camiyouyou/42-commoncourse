@@ -59,9 +59,9 @@ int  check_exit(char **map, t_long *game, int x, int y)
 int  check_extension(char *name, int i)
 {
   i = 0;
-  while (name)
+  while (name[i])
   {
-    if (name[i++] == '.')
+    if (name[i] == '.')
     {
       if (name[i++] == 'b')
       {
@@ -75,7 +75,7 @@ int  check_extension(char *name, int i)
       }
       return (1);
     }
-    return(1);
+    i++;
   }
   return (1);
 }
