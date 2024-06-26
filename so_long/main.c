@@ -56,6 +56,71 @@ int  check_exit(char **map, t_long *game, int x, int y)
   return 0;
 }
 
+int  check_extension(char *name, int i)
+{
+  i = 0;
+  while (name)
+  {
+    if (name[i++] == '.')
+    {
+      if (name[i++] == 'b')
+      {
+        if (name[i++] == 'e')
+        {
+          if (name[i++] == 'r')
+            return (0);
+          return (1);
+        }
+        return (1);
+      }
+      return (1);
+    }
+    return(1);
+  }
+  return (1);
+}
+
+void  check_pos_e(char **map, t_long *game)
+{
+  int  x;
+  int  y;
+  x = 0;
+  while (map[x])
+  {
+    y = 0;
+    while (map[x][y])
+    {
+      if (map[x][y] == 'E')
+      {
+        game->pos_e_x = x;
+        game->pos_e_y = y;
+      }
+      y++;
+    }
+    x++;
+  }
+}
+
+void  check_pos_p(char **map, t_long *game)
+{
+  int  x;
+  int  y;
+  x = 0;
+  while (map[x])
+  {
+    y = 0;
+    while (map[x][y])
+    {
+      if (map[x][y] == 'P')
+      {
+        game->pos_p_x = x;
+        game->pos_p_y = y;
+      }
+      y++;
+    }
+    x++;
+  }
+}
 
 
 
