@@ -4,15 +4,13 @@
  * checker structure: qu'il y ait bien des murs, du vide, une sortie, un personnages et des collectibles.
  * vérifier que la map est bien rectangle
  * vérifier que la map est bien entourée par des murs
- * vérifier extension
- * vérifier qu'il n'y a qu'un personnage et qu'une sortie (possible dans la meme fonction ou on compte les collectibles.
+ * vérifier extension .ber
+ * vérifier qu'il n'y a qu'un personnage et qu'une sortie (possible dans la meme fonction ou on compte les collectibles).
  * mettre en place systeme d'écriture d'erreur avec perror ou avec ft_printf;
- *
- *
  * */
 
 /** Notes on additional verifications
- * au début du jeu, il faut localiser les différents éléments, donc mettre la position des différents éléments dqns 
+ * au début du jeu, il faut localiser les différents éléments, donc mettre la position des différents éléments dans 
  * une structure
  * le cas échéant, lorsque qu'un collectible a été ramassé, il faut le remplacer par une case vide (0);
  *
@@ -45,4 +43,6 @@
 * PUIS MOUVEMENTS
 * PUIS DISPARITION DE PIECE SI AVALEE 
 * PUIS SORTIE
-* PUIS CHECKS
+* PUIS CHECKS **/
+
+
