@@ -19,14 +19,17 @@ typedef struct so_long
 	int	y;
 	int	pos_e_y;
 	int	pos_e_x;
-	
+	int	pos_p_y;
+	int	pos_p_x;	
 }	t_long;
 
 typedef struct game
 	char	**map;
 	int	moves;
-	int	total_c;
+	int	count_c;
 	int	c_pos;
+	int	pos_x;
+	int	pos_y;
 	void	*mlx;
 	void	*window;
 	void	*img_0;
