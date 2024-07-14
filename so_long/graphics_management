@@ -1,1 +1,45 @@
+#include "../so_long.h"
+#include "../minilibx-linux/mlx.h"
 
+void	texture_init(t_game *game)
+{
+	game->path_0 = "xpm/arbre1.xpm";
+	game->path_1 = "xpm/grass.xpm";
+	game->path_c = "xpm/fraise1.xpm";
+	game->path_e = "xpm/tapis1.xpm";
+	game->path_p = "xpm/chat1.xpm";
+}
+
+void check_img(void *img)
+{
+	if(img == NULL)
+		exit(2);
+}
+
+void	map_to_struct(char **map, t_game *map_struct, int x, int y)
+{
+	int	i;
+	int	j;
+
+	y = get_cols(map);
+	x = ft_strlen(map[0]);
+	map_struct->map = malloc((x + 1) * sizeof(char *));
+	if (!map_struct->map)
+		return ;
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		map_struct->map[i] = malloc((y) * sizeof(char *));
+		if (!map_struct->map[i])
+			return ;
+		while (map[i][j])
+		{
+			map_struct->map[i][j] = map[i][j];
+			j++;
+		}
+		map_struct->map[i][j] = '\0';
+		i++;
+	}
+	map_struct->map[i] = NULL;
+}
