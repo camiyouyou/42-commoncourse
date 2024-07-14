@@ -8,7 +8,7 @@
 # include <strings.h>
 # include "minilibx-linux/mlx.h"
 
-typedef struct game
+typedef struct so_long
 {
 	char	**map;
 	int	p;
@@ -17,10 +17,16 @@ typedef struct game
 	int	count_c;
 	int	x;
 	int	y;
-	int	coord_y;
-	int	coord_x;
+	int	pos_e_y;
+	int	pos_e_x;
+	
+}	t_long;
+
+typedef struct game
+	char	**map;
 	int	moves;
 	int	total_c;
+	int	c_pos;
 	void	*mlx;
 	void	*window;
 	void	*img_0;
@@ -28,7 +34,7 @@ typedef struct game
 	void	*img_c;
 	void	*img_e;
 	void	*img_p;
-}	t_game
+}	t_game;
 
 // ajouter get_next_line, split, join, strlen, strdup;
 //
@@ -36,3 +42,4 @@ typedef struct game
 char	*get_next_line(int fd);
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char *s1, char *s2);
+
