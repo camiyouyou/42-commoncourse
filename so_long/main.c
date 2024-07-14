@@ -63,8 +63,10 @@ int  check_rectangle(char **map, int i, int j, int x)
   }
 }
 
-int get_cols(char **map, int i, int j)
+int get_cols(char **map)
 {
+	int	i;
+	int	j;
   i = 0;
   while (map[i][j])
   {
