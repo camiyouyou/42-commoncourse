@@ -104,7 +104,28 @@ int  check_walls(char **map, int i, int j)
       return (1)
     i++;
   }
+  return (0);
 }
+
+int	check_struct(char **map, int i, int j)
+{
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == '1' || map[i][j] == '0' ||
+			map[i][j] == 'E' || map[i][j] == 'P' ||
+			map[i][j] == 'C')
+				j++;
+			else
+				return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
 
 int  check_exit(char **map, t_long *game, int x, int y)
 {
