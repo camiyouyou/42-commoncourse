@@ -63,10 +63,48 @@ int  check_rectangle(char **map, int i, int j, int x)
   }
 }
 
-int  check_walls(char **map, int i, int j)
+int get_cols(char **map, int i, int j)
 {
+  i = 0;
+  while (map[i][j])
+  {
+    j = 0;
+    while (map[i])
+      j++;
+    i++;
+  }
+  return(i);
 }
 
+int  check_walls(char **map, int i, int j)
+{
+  int x;
+  int y;
+  i = 0;
+  x = ft_strlen(map[0]);
+  y = get_cols(map);
+
+  while (map[0][i])
+  {
+    if (map[0][i] != '1')
+      return (1)
+    i++;
+  }
+  i = 0;
+  while (j < y)
+  {
+    if (map[j][0] != '1' || map[j][x] != '1')
+      return (1);
+    j++;
+  }
+  j = j - 1;
+   while (map[0][i])
+  {
+    if (map[j][i] != '1')
+      return (1)
+    i++;
+  }
+}
 
 int  check_exit(char **map, t_long *game, int x, int y)
 {
