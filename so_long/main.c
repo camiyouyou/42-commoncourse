@@ -45,6 +45,29 @@
 * PUIS SORTIE
 * PUIS CHECKS **/
 
+int  check_rectangle(char **map, int i, int j, int x)
+{
+  x = ft_strlen(map[0]);
+  i = 0;
+  while (map[i][j])
+  {
+      j = 0;
+      while(map[i])
+      {
+        j++;
+      }
+      if(j == x)
+        i++;
+      else
+        return (1);
+  }
+}
+
+int  check_walls(char **map, int i, int j)
+{
+}
+
+
 int  check_exit(char **map, t_long *game, int x, int y)
 {
   if (game->count == game->count_c)
