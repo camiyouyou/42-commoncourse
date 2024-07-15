@@ -17,6 +17,38 @@ void	free_map(char **map)
 	  free(map);
 }
 
+void	put_texture(t_game *game, char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == '0')
+				mlx_put_image_to_window(game->mlx, game->wdw, game->img_0,
+					j * 100, i * 100);
+			if (map[i][j] == '1')
+				mlx_put_image_to_window(game->mlx, game->wdw, game->img_1,
+					j * 100, i * 100);
+			if (map[i][j] == 'C')
+				mlx_put_image_to_window(game->mlx, game->wdw, game->img_c,
+					j * 100, i * 100);
+			if (map[i][j] == 'E')
+				mlx_put_image_to_window(game->mlx, game->wdw, game->img_e,
+					j * 100, i * 100);
+			if (map[i][j] == 'P')
+				mlx_put_image_to_window(game->mlx, game->wdw, game->img_p,
+					j * 100, i * 100);
+			j++;
+		}
+		i++;
+	}
+}
+
 char **save_map(char **map, int fd)
 {
 	char	*line;
