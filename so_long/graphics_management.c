@@ -79,3 +79,15 @@ int	exit_game(t_game *game)
 	free(game->mlx);
 	exit(1);
 }
+
+void	show_map(char **map)
+{
+	t_game *game;
+	int	width;
+	int	length;
+
+	texture_init(game);
+	info_map(map, game);
+	map_to_struct(map, game, 0, 0);
+	game.mlx = mlx_init();
+}
