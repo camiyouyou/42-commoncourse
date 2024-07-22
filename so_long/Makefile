@@ -1,0 +1,1 @@
+-Lminilibx-linux -lmlx-Linux -lX11 -lXext
