@@ -91,7 +91,7 @@ int map_mng(int fd)
 		return(ft_printf("Error\nMap cannot be played\n"));
 	}
 	free_map(map_copy);
-	map_init(map); // changer nom
+	show_map(map);
 	return (0);
 }
 
