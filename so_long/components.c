@@ -1,3 +1,5 @@
+#include "so_long.h"
+
 int	check_components(char **map, int i, int j, t_long *check)
 {
 	int	c;
@@ -9,10 +11,10 @@ int	check_components(char **map, int i, int j, t_long *check)
 		while (map[i][j])
 		{
 			if (map[i][j] == 'C')
-				store->c = c++;
+				check->c = c++;
 			if (map[i][j] == 'E')
 				check->e = check_duplicate(check->e);
-			if (map[count][count_2] == 'P')
+			if (map[i][j] == 'P')
 				check->p = check_duplicate(check->p);
 			j++;
 		}

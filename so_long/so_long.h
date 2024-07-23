@@ -24,19 +24,27 @@ typedef struct so_long
 }	t_long;
 
 typedef struct game
+{
 	char	**map;
 	int	moves;
 	int	count_c;
 	int	c_pos;
+	int     len_x;
+	int     len_y;
 	int	pos_x;
 	int	pos_y;
 	void	*mlx;
-	void	*window;
+	void	*wdw;
 	void	*img_0;
 	void	*img_1;
 	void	*img_c;
 	void	*img_e;
 	void	*img_p;
+	void    *path_0;
+	void    *path_1;
+	void    *path_c;
+	void    *path_e;
+	void    *path_p;
 }	t_game;
 
 // ajouter get_next_line, split, join, strlen, strdup;
@@ -67,5 +75,23 @@ void	free_map(char **map);
 void	put_texture(t_game *game, char **map);
 char	**save_map(char **map, int fd);
 int	map_mng(int fd);
+unsigned long ft_strlen(char *s);
+size_t	ft_strlcpy(char *restrict dst, char *restrict src, size_t dstsize);
+char	*ft_strdup(char *s1);
+char	*ft_substr(char *s, unsigned int start, size_t len);
+void    key_horiz(t_game *g, int n);
+void    ft_put_action(int nb);
+void    key_vert(t_game *g, int p);
+int    ft_putnbr_ap(int n, int base);
+int    ft_putstr_ap(char *s);
+int    ft_putchar_ap(int c);
+int    ft_hexa(unsigned long n, char format);
+int	ft_putunsigned(unsigned int n);
+int ft_print_ptr(size_t nbr);
+int ft_ptr(size_t num);
+int print_format(char s, va_list ap);
+int ft_printf(const char *s, ...);
+
+#endif
 
 

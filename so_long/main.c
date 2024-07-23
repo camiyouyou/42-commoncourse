@@ -44,10 +44,10 @@
 * PUIS DISPARITION DE PIECE SI AVALEE 
 * PUIS SORTIE
 * PUIS CHECKS **/
+#include "so_long.h"
 
 int  check_rectangle(char **map, int i, int j, int x)
 {
-  x = ft_strlen(map[0]);
   i = 0;
   while (map[i][j])
   {
@@ -61,6 +61,7 @@ int  check_rectangle(char **map, int i, int j, int x)
       else
         return (1);
   }
+  return (0);
 }
 
 int get_cols(char **map)
@@ -68,7 +69,7 @@ int get_cols(char **map)
 	int	i;
 	int	j;
   i = 0;
-  while (map[i][j])
+  while (map)
   {
     j = 0;
     while (map[i])
@@ -89,7 +90,7 @@ int  check_walls(char **map, int i, int j)
   while (map[0][i])
   {
     if (map[0][i] != '1')
-      return (1)
+      return (1);
     i++;
   }
   i = 0;
@@ -103,7 +104,7 @@ int  check_walls(char **map, int i, int j)
    while (map[0][i])
   {
     if (map[j][i] != '1')
-      return (1)
+      return (1);
     i++;
   }
   return (0);
@@ -131,9 +132,9 @@ int	check_struct(char **map, int i, int j)
 
 int  check_exit(char **map, t_long *game, int x, int y)
 {
-  if (game->count == game->count_c)
+  if (game->c == game->count_c)
   {
-    if (map [x][y] = 'K')
+    if (map[x][y] == 'K')
       return 0;
     return 1;
   }

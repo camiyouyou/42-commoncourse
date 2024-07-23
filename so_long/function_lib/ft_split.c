@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../so_long.h"
 
 size_t	count_lines(char const *s, char c)
 {
@@ -96,3 +96,4 @@ char	**ft_split(char const *s, char c)
 	new = split(s, c, new, len);
 	return (new);
 }
+

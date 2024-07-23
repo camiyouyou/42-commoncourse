@@ -1,20 +1,16 @@
+#include "so_long.h"
+
 void	free_map(char **map)
 {
 	int	i;
-  int j;
-
+	
 	i = 0;
-	while (map[i][j])
-  {
-    j = 0;
-    while (map[i])
-	  {
-		  free(map[i][j]);
+	while (map[i])
+        {
+		  free(map[i]);
 		  i++;
-	  }
-    j++;
-  }
-	  free(map);
+	}
+	free(map);
 }
 
 void	put_texture(t_game *game, char **map)
@@ -81,10 +77,10 @@ int map_mng(int fd)
 	map = NULL;
 	map_copy = NULL;
 	store = malloc(sizeof(t_long));
-	if (!store_struct)
+	if (!store)
 		return (1);
 	map = save_map(map, fd);
-	if (check_map(map, store))
+	if (check_map_main(map, store))
 	{
 		free_map(map);
 		free_map(map_copy);
@@ -97,18 +93,16 @@ int map_mng(int fd)
 
 int	main(int argc, char **argv)
 {
-	int		count;
 	int		fd;
 	char	*file_name;
 
-	count = 0;
 	file_name = argv[1];
 	fd = open(file_name, O_RDONLY);
 	if (fd < 1)
 		return (ft_printf("Error\nBad file name.\n"));
 	if (argc != 2)
 		return (ft_printf("Error\nNumber of argument(s) invalid.\n"));
-	if (check_ext(file_name, 0) == 0)
+	if (check_extension(file_name, 0) == 0)
 		return (ft_printf("Error\nBad extension.\n"));
 	map_mng(fd);
 }

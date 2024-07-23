@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
-#include "libft.h"
+#include "../so_long.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	int		i;

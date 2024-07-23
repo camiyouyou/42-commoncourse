@@ -1,16 +1,22 @@
 NAME		= so_long
-CC			= cc
+
+SOURCES		= ft_printf/aux.c \
+		  ft_printf/ft_printf.c \
+		  ft_printf/utils.c \
+		  function_lib/ft_split.c \
+		  function_lib/ft_strjoin.c \
+		  function_lib/ft_substr.c \
+		  get_next_line/get_next_line.c \
+		  get_next_line/get_next_line_utils.c \
+		  components.c \
+		  graphics_management.c utils.c checks.c \
+		  main.c
+
+OBJECTS		= $(SOURCES:%.c=%.o)
+RM		= rm -rf
+CC		= cc
 CFLAGS		= -Wall -Wextra -Werror -Imlx -Ilibft -c
-RM			= rm -rf
-MLXFLAGS	= -Lminilibx-linux -lmlx-Linux -lX11 -lXext
-
-SOURCES		= 
-			  ft_printf/aux ft_printf/ft_printf ft_printf/ft_strlen ft_printf/utils \
-			  function_lib/sl_split function_lib/sl_strjoin \
-			  get_next_line/get_next_line get_next_line/get_next_line_utils \
-			  components graphics_management main main_checks utils \ 
-
-OBJECTS     = $(SOURCES:%.c=%.o)
+MLXFLAGS	= libmlx.a -Lminilibx-linux -lmlx-Linux -lX11 -lXext
 
 %.o: %.c
 	$(CC) $(CFLAGS) $< -o $@
@@ -18,13 +24,13 @@ OBJECTS     = $(SOURCES:%.c=%.o)
 $(NAME): $(OBJECTS)
 	$(CC) $(OBJECTS) $(MLXFLAGS) -o $(NAME)
 
+all: $(NAME)
+
 clean:
 	$(RM) $(OBJECTS)
 
 fclean: clean
 	$(RM) $(NAME)
-
-all : $(NAME)
 
 re: fclean all
 

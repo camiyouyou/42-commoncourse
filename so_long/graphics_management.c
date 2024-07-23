@@ -1,5 +1,5 @@
-#include "../so_long.h"
-#include "../minilibx-linux/mlx.h"
+#include "so_long.h"
+#include "minilibx-linux/mlx.h"
 
 void	texture_init(t_game *game)
 {
@@ -85,9 +85,9 @@ void	info_map(char **map, t_game *game)
 	int	y;
 	int	x;
 
-	game->nb_action = 0;
-	game->c_p = 0;
-	game->c_tot = 0;
+	game->moves = 0;
+	game->c_pos = 0;
+	game->count_c = 0;
 	y = 0;
 	while (map[y])
 	{
@@ -95,11 +95,11 @@ void	info_map(char **map, t_game *game)
 		while (map[y][x])
 		{
 			if (map[y][x] == 'C')
-				game->c_tot = game->c_tot + 1;
+				game->count_c = game->count_c + 1;
 			if (map[y][x] == 'P')
 			{
-				game->ply_x = x;
-				game->ply_y = y;
+				game->pos_x = x;
+				game->pos_y = y;
 			}
 			x++;
 		}
@@ -113,25 +113,86 @@ void	show_map(char **map)
 {
 	t_game game;
 	int	width;
-	int	length;
+	int	height;
 
 	texture_init(&game);
 	info_map(map, &game);
 	map_to_struct(map, &game, 0, 0);
 	game.mlx = mlx_init();
-	game.wdw = mlx_new_window(game.mlx, game.len_x * 100, game len_y * 100, "so_long");
-	game.img_0 = mlx_xpm_file_to_image(game.mlx, game.path_0, &img_w, &img_h);
+	game.wdw = mlx_new_window(game.mlx, game.len_x * 100, game.len_y * 100, "so_long");
+	game.img_0 = mlx_xpm_file_to_image(game.mlx, game.path_0, &width, &height);
 	check_img(game.img_0);
-	game.img_1 = mlx_xpm_file_to_image(game.mlx, game.path_1, &img_w, &img_h);
+	game.img_1 = mlx_xpm_file_to_image(game.mlx, game.path_1, &width, &height);
 	check_img(game.img_1);
-	game.img_c = mlx_xpm_file_to_image(game.mlx, game.path_c, &img_w, &img_h);
+	game.img_c = mlx_xpm_file_to_image(game.mlx, game.path_c, &width, &height);
 	check_img(game.img_c);
-	game.img_e = mlx_xpm_file_to_image(game.mlx, game.path_e, &img_w, &img_h);
+	game.img_e = mlx_xpm_file_to_image(game.mlx, game.path_e, &width, &height);
 	check_img(game.img_e);
-	game.img_p = mlx_xpm_file_to_image(game.mlx, game.path_p, &img_w, &img_h);
+	game.img_p = mlx_xpm_file_to_image(game.mlx, game.path_p, &width, &height);
 	check_img(game.img_p);
 	put_texture(&game, map);
 	mlx_key_hook(game.wdw, mng_input, &game);
 	mlx_hook(game.wdw, 17, 0, exit_game, &game);
 	mlx_loop(game.mlx);
+}
+
+void  key_vert(t_game *g, int p)
+{
+  if (g->map[p][g->pos_x] == '1')
+    return ;
+  if (g->map[p][g->pos_x] == 'C')
+  {
+    g->map[p][g->pos_x] = '0';
+    g->count_c = g->count_c + 1;
+    mlx_put_image_to_window(g->mlx, g->wdw, g->img_0,
+          g->pos_x * 100, p * 100);
+  }
+  if (g->map[p][g->pos_x] == 'E')
+  {
+    if (g->count_c == g->c_pos)
+    {
+        mlx_destroy_window(g->mlx, g->wdw);
+        exit(1);
+    }
+    else
+        return ;
+  }
+  g->moves = g->moves + 1;
+  ft_put_action(g->moves);
+  mlx_put_image_to_window(g->mlx, g->wdw, g->img_0, g->pos_x *100, g->pos_y *100);
+  mlx_put_image_to_window(g->mlx, g->wdw, g->img_p, g->pos_x *100, g->pos_y *100);
+  g->pos_y = p;
+}
+
+void ft_put_action(int nb)
+{
+  ft_printf("Number of moves: %d\n", nb);
+}
+
+void  key_horiz(t_game *g, int n)
+{
+  if (g->map[g->pos_y][n] == '1')
+    return ;
+  if (g->map[g->pos_y][n] == 'C')
+  {
+    g->map[g->pos_y][n] = '0';
+    g->count_c = g->count_c + 1;
+    mlx_put_image_to_window(g->mlx, g->wdw, g->img_0,
+          g->pos_y * 100, n * 100);
+  }
+  if (g->map[g->pos_y][n] == 'E')
+  {
+    if (g->count_c == g->c_pos)
+    {
+        mlx_destroy_window(g->mlx, g->wdw);
+        exit(1);
+    }
+    else
+        return ;
+  }
+  g->moves = g->moves + 1;
+  ft_put_action(g->moves);
+  mlx_put_image_to_window(g->mlx, g->wdw, g->img_0, g->pos_x *100, g->pos_y *100);
+  mlx_put_image_to_window(g->mlx, g->wdw, g->img_p, g->pos_x *100, g->pos_y *100);
+  g->pos_x = n;
 }
