@@ -2,9 +2,11 @@
 
 int	check_components(char **map, int i, int j, t_long *check)
 {
-	int	c;
-
-	c = 0;
+        int c;
+        
+        c = 0;
+	i = 0;
+	ft_printf("checking components\n");
 	while (map[i])
 	{
 		j = 0;
@@ -28,6 +30,7 @@ int	check_components(char **map, int i, int j, t_long *check)
 
 int	check_duplicate(int i)
 {
+	ft_printf("checking duplicates\n");
 	if (i)
 		return (2);
 	else if (i == 0)

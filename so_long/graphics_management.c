@@ -3,8 +3,8 @@
 
 void	texture_init(t_game *game)
 {
-	game->path_0 = "xpm/arbre1.xpm";
-	game->path_1 = "xpm/grass.xpm";
+	game->path_0 = "xpm/grass.xpm";
+	game->path_1 = "xpm/arbre1.xpm";
 	game->path_c = "xpm/fraise1.xpm";
 	game->path_e = "xpm/tapis1.xpm";
 	game->path_p = "xpm/chat1.xpm";
@@ -48,6 +48,7 @@ void	map_to_struct(char **map, t_game *map_struct, int x, int y)
 
 int	mng_input(int key, t_game *game)
 {
+ft_printf("managing input\n");
 	int	x1;
 	int	y1;
 	int	x2;
@@ -135,7 +136,9 @@ void	show_map(char **map)
 	check_img(game.img_p);
 	put_texture(&game, map);
 	mlx_key_hook(game.wdw, mng_input, &game);
+	ft_printf("key should be handled\n");
 	mlx_hook(game.wdw, 17, 0, exit_game, &game);
+	ft_printf("exit through escape should be handled\n");
 	mlx_loop(game.mlx);
 	ft_printf("window should be open\n");
 }

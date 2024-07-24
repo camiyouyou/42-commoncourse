@@ -46,8 +46,10 @@
 * PUIS CHECKS **/
 #include "so_long.h"
 
-int  check_rectangle(char **map, int i, int j, int x)
+/* int  check_rectangle(char **map, int i, int j, int x)
 {
+  ft_printf("checking rectangle\n");
+  x = strlen(map[i]);
   i = 0;
   while (map[i][j])
   {
@@ -62,25 +64,47 @@ int  check_rectangle(char **map, int i, int j, int x)
         return (1);
   }
   return (0);
+} */
+
+int check_rectangle(char **map, int start_row, int start_col) {
+    unsigned long expected_length = ft_strlen(map[start_row]);
+    int i = start_row;
+    unsigned long j = start_col;
+
+    printf("Checking rectangle\n");
+
+    while (map[i] != NULL) {
+        while (map[i][j] != '\0') {
+            j++;
+        }
+        if (j - start_col != expected_length) {
+            return 1; // Les longueurs ne correspondent pas
+        }
+        j = start_col;
+        i++;
+    }
+    return 0; // Toutes les lignes ont la même longueur
 }
 
 int get_cols(char **map)
 {
-	int	i;
-	int	j;
-  i = 0;
-  while (map)
-  {
-    j = 0;
+    int i = 0;
+    int cols = 0;
+    int current_cols;
+
     while (map[i])
-      j++;
-    i++;
-  }
-  return(i);
+    {
+        current_cols = ft_strlen(map[i]);
+        if (current_cols > cols) // Garder la plus grande longueur
+            cols = current_cols;
+        i++;
+    }
+    return (i);
 }
 
-int  check_walls(char **map, int i, int j)
+/*int  check_walls(char **map, int i, int j)
 {
+  ft_printf("checking walls\n");
   int x;
   int y;
   i = 0;
@@ -108,10 +132,48 @@ int  check_walls(char **map, int i, int j)
     i++;
   }
   return (0);
+} */
+
+int check_walls(char **map, int i, int j)
+{
+    ft_printf("checking walls\n");
+    i = 0;
+    j = 0;
+    int x = ft_strlen(map[0]);
+    int y = get_cols(map);
+
+    // Vérification du mur supérieur
+    while (i < x)
+    {
+        if (map[0][i] != '1')
+            return 1;
+        i++;
+    }
+
+    // Vérification des murs latéraux
+    j = 0; // Réinitialiser j pour la vérification des murs latéraux
+    while (j < y)
+    {
+        if (map[j][0] != '1' || map[j][x - 1] != '1') // Utiliser x - 1
+            return 1;
+        j++;
+    }
+
+    // Vérification du mur inférieur
+    i = 0; // Réinitialiser i pour la vérification du mur inférieur
+    while (i < x)
+    {
+        if (map[y - 1][i] != '1') // Utiliser y - 1
+            return 1;
+        i++;
+    }
+
+    return 0; // Tout va bien
 }
 
 int	check_struct(char **map, int i, int j)
 {
+    ft_printf("checking structure\n");
 	while (map[i])
 	{
 		j = 0;
@@ -132,17 +194,26 @@ int	check_struct(char **map, int i, int j)
 
 int  check_exit(char **map, t_long *game, int x, int y)
 {
+  ft_printf("checking exit\n");
   if (game->c == game->count_c)
   {
     if (map[x][y] == 'K')
-      return 0;
-    return 1;
+    {
+      ft_printf("no error, exit ok\n");
+      return (0);
+    }
+    else
+    {
+      ft_printf("error, exit not ok\n");
+      return (1);
+    }
   }
-  return 0;
+  return (0);
 }
 
 int  check_extension(char *name, int i)
 {
+  ft_printf("checking extension\n");
   i = 0;
   while (name[i])
   {

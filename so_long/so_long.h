@@ -62,7 +62,7 @@ int	mng_input(int key, t_game *game);
 int	exit_game(t_game *game);
 void	info_map(char **map, t_game *game);
 void	show_map(char **map);
-int	check_rectangle(char **map, int i, int j, int x);
+int	check_rectangle(char **map, int i, int j);
 int	get_cols(char **map);
 int	check_walls(char **map, int i, int j);
 int	check_struct(char **map, int i, int j);

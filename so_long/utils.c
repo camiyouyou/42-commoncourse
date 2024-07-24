@@ -5,6 +5,7 @@ void	free_map(char **map)
 	int	i;
 	
 	i = 0;
+	ft_printf("freeing map");
 	while (map[i])
         {
 		  free(map[i]);
@@ -84,12 +85,12 @@ int map_mng(int fd)
 	if (!store)
 		return (1);
 	map = save_map(map, fd);
-	if (check_map_main(map, store))
+	if ((check_map_main(map, store)) != 0)
 	{
 		free_map(map);
-		return(1);
+		return (1);
 	}
-	map_copy=copy_map(map, 0, 0);
+	map_copy = copy_map(map);
 	if (main_algo(map_copy, store))
 	{
 	  free_map(map);
