@@ -91,6 +91,11 @@ int ft_print_ptr(size_t nbr);
 int ft_ptr(size_t num);
 int print_format(char s, va_list ap);
 int ft_printf(const char *s, ...);
+void	flood_fill(char **map, t_long *game, int x, int y);
+int	main_algo(char **map, t_long *store);
+int	mem_colonne(char **map, int mem, int mem_ligne);
+int	mem_ligne(char **map, int mem, int mem_word);
+char	**copy_map(char **map, int mem, int mem_ligne);
 
 #endif
 

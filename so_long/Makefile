@@ -9,6 +9,8 @@ SOURCES		= ft_printf/aux.c \
 		  get_next_line/get_next_line.c \
 		  get_next_line/get_next_line_utils.c \
 		  components.c \
+		  algo.c \
+		  mem_map.c \
 		  graphics_management.c utils.c checks.c \
 		  main.c
 
@@ -16,7 +18,7 @@ OBJECTS		= $(SOURCES:%.c=%.o)
 RM		= rm -rf
 CC		= cc
 CFLAGS		= -Wall -Wextra -Werror -Imlx -Ilibft -c
-MLXFLAGS	= libmlx.a -Lminilibx-linux -lmlx-Linux -lX11 -lXext
+MLXFLAGS	= -Lminilibx-linux -lmlx -lX11 -lXext
 
 %.o: %.c
 	$(CC) $(CFLAGS) $< -o $@

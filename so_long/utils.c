@@ -43,6 +43,7 @@ void	put_texture(t_game *game, char **map)
 		}
 		i++;
 	}
+	ft_printf("texture set succesfully\n");
 }
 
 char **save_map(char **map, int fd)
@@ -62,9 +63,12 @@ char **save_map(char **map, int fd)
 		if (line == NULL)
 			break ;
 		full_line = ft_strjoin(full_line, line);
+		//remove after debug
+		ft_printf("%s\n", full_line);
 	}
 	map = ft_split(full_line, '\n');
 	free(full_line);
+	ft_printf("map saved succesfully\n");
 	return (map);
 }
 
@@ -83,10 +87,17 @@ int map_mng(int fd)
 	if (check_map_main(map, store))
 	{
 		free_map(map);
-		free_map(map_copy);
-		return(ft_printf("Error\nMap cannot be played\n"));
+		return(1);
+	}
+	map_copy=copy_map(map, 0, 0);
+	if (main_algo(map_copy, store))
+	{
+	  free_map(map);
+	  free_map(map_copy);
+	  return(ft_printf("Error\nMap cannot be played\n"));
 	}
 	free_map(map_copy);
+	ft_printf("map copy freed succesfully\n");
 	show_map(map);
 	return (0);
 }

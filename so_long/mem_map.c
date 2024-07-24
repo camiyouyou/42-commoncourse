@@ -1,3 +1,5 @@
+#include "so_long.h"
+
 int	mem_colonne(char **map, int mem, int mem_ligne)
 {
 	while (map[mem])
@@ -10,7 +12,7 @@ int	mem_colonne(char **map, int mem, int mem_ligne)
 	return (mem);
 }
 
-int	mem_ligne(char **map, int mem, int mem_word)
+int	mem_line(char **map, int mem, int mem_ligne)
 {
 	while (map[mem])
 	{
@@ -28,9 +30,9 @@ char	**copy_map(char **map, int mem, int mem_ligne)
 	int	i;
 	int	j;
 
-	mem =
-	mem_ligne =
-	copy = 
+	mem = mem_colonne(map, mem, mem_ligne);
+	mem_ligne = mem_line(map, mem, mem_ligne);
+	copy = malloc((mem + 1) * sizeof(char *));
 	if (!copy)
 		return (NULL);
 	i = 0;

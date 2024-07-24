@@ -8,6 +8,7 @@ void	texture_init(t_game *game)
 	game->path_c = "xpm/fraise1.xpm";
 	game->path_e = "xpm/tapis1.xpm";
 	game->path_p = "xpm/chat1.xpm";
+	ft_printf("texture set succesfully\n");
 }
 
 void check_img(void *img)
@@ -42,6 +43,7 @@ void	map_to_struct(char **map, t_game *map_struct, int x, int y)
 		i++;
 	}
 	map_struct->map[i] = NULL;
+	ft_printf("map saved to structure\n");
 }
 
 int	mng_input(int key, t_game *game)
@@ -107,6 +109,7 @@ void	info_map(char **map, t_game *game)
 	}
 	game->len_y = y;
 	game->len_x = x;
+	ft_printf("info checked succesfully\n");
 }
 
 void	show_map(char **map)
@@ -134,6 +137,7 @@ void	show_map(char **map)
 	mlx_key_hook(game.wdw, mng_input, &game);
 	mlx_hook(game.wdw, 17, 0, exit_game, &game);
 	mlx_loop(game.mlx);
+	ft_printf("window should be open\n");
 }
 
 void  key_vert(t_game *g, int p)
