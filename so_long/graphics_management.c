@@ -58,15 +58,15 @@ ft_printf("managing input\n");
 	y1 = game->pos_y - 1;
 	x2 = game->pos_x + 1;
 	y2 = game->pos_y + 1;
-	if (key == 0 || key == 123)
+	if (key == XK_Left || key == XK_A)
 		key_horiz(game, x1);
-	if (key == 2 || key == 124)
+	if (key == XK_Right || key == XK_D)
 		key_horiz(game, x2);
-	if (key == 13 || key == 126)
+	if (key == XK_Up || key == XK_S)
 		key_vert(game, y1);
-	if (key == 1 || key == 125)
+	if (key == XK_Down || key == XK_W)
 		key_vert(game, y2);
-	if (key == 53)
+	if (key == XK_Escape)
 	{
 		mlx_destroy_window(game->mlx, game->wdw);
 		free_map(game->map);
@@ -98,7 +98,7 @@ void	info_map(char **map, t_game *game)
 		while (map[y][x])
 		{
 			if (map[y][x] == 'C')
-				game->count_c = game->count_c + 1;
+				game->c_pos = game->c_pos + 1;
 			if (map[y][x] == 'P')
 			{
 				game->pos_x = x;
@@ -167,7 +167,7 @@ void  key_vert(t_game *g, int p)
   g->moves = g->moves + 1;
   ft_put_action(g->moves);
   mlx_put_image_to_window(g->mlx, g->wdw, g->img_0, g->pos_x *100, g->pos_y *100);
-  mlx_put_image_to_window(g->mlx, g->wdw, g->img_p, g->pos_x *100, g->pos_y *100);
+  mlx_put_image_to_window(g->mlx, g->wdw, g->img_p, g->pos_x *100, p *100);
   g->pos_y = p;
 }
 
@@ -192,7 +192,7 @@ void  key_horiz(t_game *g, int n)
     if (g->count_c == g->c_pos)
     {
         mlx_destroy_window(g->mlx, g->wdw);
-        exit(1);
+        exit_game(g);
     }
     else
         return ;
@@ -200,6 +200,6 @@ void  key_horiz(t_game *g, int n)
   g->moves = g->moves + 1;
   ft_put_action(g->moves);
   mlx_put_image_to_window(g->mlx, g->wdw, g->img_0, g->pos_x *100, g->pos_y *100);
-  mlx_put_image_to_window(g->mlx, g->wdw, g->img_p, g->pos_x *100, g->pos_y *100);
+  mlx_put_image_to_window(g->mlx, g->wdw, g->img_p, n *100, g->pos_y *100);
   g->pos_x = n;
 }

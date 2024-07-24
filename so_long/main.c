@@ -46,26 +46,6 @@
 * PUIS CHECKS **/
 #include "so_long.h"
 
-/* int  check_rectangle(char **map, int i, int j, int x)
-{
-  ft_printf("checking rectangle\n");
-  x = strlen(map[i]);
-  i = 0;
-  while (map[i][j])
-  {
-      j = 0;
-      while(map[i])
-      {
-        j++;
-      }
-      if(j == x)
-        i++;
-      else
-        return (1);
-  }
-  return (0);
-} */
-
 int check_rectangle(char **map, int start_row, int start_col) {
     unsigned long expected_length = ft_strlen(map[start_row]);
     int i = start_row;
@@ -102,37 +82,6 @@ int get_cols(char **map)
     return (i);
 }
 
-/*int  check_walls(char **map, int i, int j)
-{
-  ft_printf("checking walls\n");
-  int x;
-  int y;
-  i = 0;
-  x = ft_strlen(map[0]);
-  y = get_cols(map);
-
-  while (map[0][i])
-  {
-    if (map[0][i] != '1')
-      return (1);
-    i++;
-  }
-  i = 0;
-  while (j < y)
-  {
-    if (map[j][0] != '1' || map[j][x] != '1')
-      return (1);
-    j++;
-  }
-  j = j - 1;
-   while (map[0][i])
-  {
-    if (map[j][i] != '1')
-      return (1);
-    i++;
-  }
-  return (0);
-} */
 
 int check_walls(char **map, int i, int j)
 {
@@ -149,9 +98,8 @@ int check_walls(char **map, int i, int j)
             return 1;
         i++;
     }
-
-    // Vérification des murs latéraux
-    j = 0; // Réinitialiser j pour la vérification des murs latéraux
+    
+    j = 0; 
     while (j < y)
     {
         if (map[j][0] != '1' || map[j][x - 1] != '1') // Utiliser x - 1
@@ -208,7 +156,8 @@ int  check_exit(char **map, t_long *game, int x, int y)
       return (1);
     }
   }
-  return (0);
+  else
+    return (0);
 }
 
 int  check_extension(char *name, int i)
