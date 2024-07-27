@@ -6,6 +6,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <strings.h>
+# include <X11/keysym.h> 
 # include "minilibx-linux/mlx.h"
 
 typedef struct so_long

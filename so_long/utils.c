@@ -5,13 +5,14 @@ void	free_map(char **map)
 	int	i;
 	
 	i = 0;
-	ft_printf("freeing map");
+	ft_printf("freeing map\n");
 	while (map[i])
         {
 		  free(map[i]);
 		  i++;
 	}
 	free(map);
+
 }
 
 void	put_texture(t_game *game, char **map)
@@ -90,11 +91,13 @@ int map_mng(int fd)
 		free_map(map);
 		return (1);
 	}
-	map_copy = copy_map(map);
+	map_copy = copy_map(map, 0, 0);
 	if (main_algo(map_copy, store))
 	{
 	  free_map(map);
+	  ft_printf("freed map\n");
 	  free_map(map_copy);
+	  ft_printf("freed map copy\n");
 	  return(ft_printf("Error\nMap cannot be played\n"));
 	}
 	free_map(map_copy);

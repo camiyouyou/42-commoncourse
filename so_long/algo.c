@@ -4,9 +4,9 @@ void	flood_fill(char **map, t_long *game, int x, int y)
 {
       ft_printf("map flood\n");
 	if (map[x][y] == '1')
-		return;
+		return ;
 	if (map[x][y] == 'K')
-		return;
+		return ;
 	if (map[x][y] == 'C')
 	{
 		game->count_c = game->count_c + 1;
@@ -23,18 +23,6 @@ void	flood_fill(char **map, t_long *game, int x, int y)
 		flood_fill(map, game, x-1, y);
 		flood_fill(map, game, x, y+1);
 		flood_fill(map, game, x, y-1);
-	}
-	int i = 0;
-	int j;
-	while (map[i])
-	{
-	  j = 0;
-	  while (map[i][j])
-	  {
-	    ft_printf("%s\n", map);
-	    j++;
-	  }
-	  i++;
 	}
 }
 

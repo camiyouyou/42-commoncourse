@@ -6,6 +6,7 @@ int	check_components(char **map, int i, int j, t_long *check)
         int e;
         int p;
         
+        check->c = 0;
         c = 0;
         p = 0;
         e = 0;
@@ -26,7 +27,9 @@ int	check_components(char **map, int i, int j, t_long *check)
 		}
 		i++;
 	}
-	ft_printf("collectible : %d, exit: %d, personnage: %d", check->c, check->e, check->p);
+	ft_printf("collectible : %d", check->c);
+	ft_printf("exit : %d", check->e);
+	ft_printf("perso : %d", check->p);
 	if (check->c > 0 && check->e == 1 && check->p == 1)
 		return (0);
 	else
