@@ -33,8 +33,8 @@ int	main_algo(char **map, t_long *store)
 
 	check_pos_p(map, store);
 	check_pos_e(map, store);
-	y = store->y;
-	x = store->x;
+	x = store->pos_p_y;
+	y = store->pos_p_x;
 	store->count_c = 0;
 	flood_fill(map, store, x, y);
 	x = 0;
