@@ -11,7 +11,7 @@ int  check_map_main(char **map, t_long *check)
     return (ft_printf("Error\n map is not rectangle\n"));
   if (check_walls(map, 0, 0))
     return (ft_printf("Error\n map is not surrounded by walls\n"));
-  if (!check_components(map, 0, 0, check))
+  if (check_components(map, 0, 0, check))
     return (ft_printf("Error\n number of component error\n"));
   ft_printf("No error in map\n");
   return (0);

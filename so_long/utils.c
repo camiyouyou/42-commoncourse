@@ -91,8 +91,8 @@ int map_mng(int fd)
 		free_map(map);
 		return (1);
 	}
-	map_copy = copy_map(map, 0, 0);
-	if (main_algo(map_copy, store))
+	map_copy = copy_map(map);
+	if (!main_algo(map_copy, store))
 	{
 	  free_map(map);
 	  ft_printf("freed map\n");

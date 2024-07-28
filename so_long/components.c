@@ -2,15 +2,6 @@
 
 int	check_components(char **map, int i, int j, t_long *check)
 {
-        int c;
-        int e;
-        int p;
-        
-        check->c = 0;
-        c = 0;
-        p = 0;
-        e = 0;
-	i = 0;
 	ft_printf("checking components\n");
 	while (map[i])
 	{
@@ -18,11 +9,17 @@ int	check_components(char **map, int i, int j, t_long *check)
 		while (map[i][j])
 		{
 			if (map[i][j] == 'C')
-				check->c = c++;
+				check->c = check->c + 1;
 			if (map[i][j] == 'E')
-				check->e = e++;
+			{
+				check->e = check_duplicate(check->e);
+				(ft_printf("exit\n"));
+			}
 			if (map[i][j] == 'P')
-				check->p = p++;
+			{
+				check->p = check_duplicate(check->p);
+				(ft_printf("person\n"));
+			}
 			j++;
 		}
 		i++;
@@ -42,5 +39,8 @@ int	check_duplicate(int X)
 	if (X == 0)
 		return (1);
 	else
+	{
+	        ft_printf("duplicate found\n");
 		return (2);
+	}
 }

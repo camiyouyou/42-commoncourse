@@ -63,7 +63,7 @@ int check_rectangle(char **map, int start_row, int start_col) {
         j = start_col;
         i++;
     }
-    return 0; // Toutes les lignes ont la même longueur
+    return (0); // Toutes les lignes ont la même longueur
 }
 
 int get_cols(char **map)
@@ -103,7 +103,7 @@ int check_walls(char **map, int i, int j)
     while (j < y)
     {
         if (map[j][0] != '1' || map[j][x - 1] != '1') // Utiliser x - 1
-            return 1;
+            return (1);
         j++;
     }
 
@@ -145,7 +145,7 @@ int  check_exit(char **map, t_long *game, int x, int y)
   ft_printf("checking exit\n");
   if (game->c == game->count_c)
   {
-    if (map[x][y] == 'K')
+    if (map[y][x] == 'K')
     {
       ft_printf("no error, exit ok\n");
       return (0);
@@ -187,44 +187,50 @@ int  check_extension(char *name, int i)
 
 void  check_pos_e(char **map, t_long *game)
 {
-  int  x;
-  int  y;
-  x = 0;
-  while (map[x])
-  {
-    y = 0;
-    while (map[x][y])
-    {
-      if (map[x][y] == 'E')
-      {
-        game->pos_e_x = x;
-        game->pos_e_y = y;
-      }
-      y++;
-    }
-    x++;
-  }
-}
+  int	x;
+	int	y;
+
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] == 'E')
+			{
+				game->pos_e_y = y;
+				ft_printf("ordonnee E: %d\n", y);
+				game->pos_e_x = x;
+				ft_printf("abcisse E: %d\n", x);
+			}
+			x++;
+		}
+		y++;
+	}
+} 
 
 void  check_pos_p(char **map, t_long *game)
 {
-  int  x;
-  int  y;
-  x = 0;
-  while (map[x])
-  {
-    y = 0;
-    while (map[x][y])
-    {
-      if (map[x][y] == 'P')
-      {
-        game->pos_p_x = x;
-        game->pos_p_y = y;
-      }
-      y++;
-    }
-    x++;
-  }
+  int	x;
+	int	y;
+
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] == 'P')
+			{
+				game->y = y;
+				ft_printf("ordonnee P: %d\n", y);
+				game->x = x;
+                                ft_printf("abcisse P: %d\n", x);
+			}
+			x++;
+		}
+		y++;
+	}
 }
 
 

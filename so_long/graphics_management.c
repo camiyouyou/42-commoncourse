@@ -58,13 +58,13 @@ ft_printf("managing input\n");
 	y1 = game->pos_y - 1;
 	x2 = game->pos_x + 1;
 	y2 = game->pos_y + 1;
-	if (key == XK_Left || key == XK_A)
+	if (key == XK_Left || key == XK_a)
 		key_horiz(game, x1);
-	if (key == XK_Right || key == XK_D)
+	if (key == XK_Right || key == XK_d)
 		key_horiz(game, x2);
-	if (key == XK_Up || key == XK_S)
+	if (key == XK_Up || key == XK_s)
 		key_vert(game, y1);
-	if (key == XK_Down || key == XK_W)
+	if (key == XK_Down || key == XK_w)
 		key_vert(game, y2);
 	if (key == XK_Escape)
 	{
