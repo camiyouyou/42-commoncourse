@@ -94,7 +94,7 @@ void	check_img(void *img)
 int	check_access(t_long *store)
 {
 	int	total;
-	total = store->n0 + store->c + store->e + store->p;
+	total = store->n0 + store->count_c;
 
 	if (total != store->k)
 		return (1)
