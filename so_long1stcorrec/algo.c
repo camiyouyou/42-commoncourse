@@ -36,6 +36,7 @@ void	flood_fill(char **map, t_long *game, int x, int y)
 		flood_fill(map, game, x, y -1);
 	}
 }
+// ajouter compteur de K vs. compte de C + compte de E + compte P
 
 int	main_algo(char **map, t_long *store)
 {
