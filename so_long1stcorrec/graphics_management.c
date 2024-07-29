@@ -20,6 +20,7 @@ void	texture_init(t_game *game)
 	game->path_c = "xpm/fraise1.xpm";
 	game->path_e = "xpm/tapis1.xpm";
 	game->path_p = "xpm/chat1.xpm";
+	game->path_chat = "xpm/chat.xpm";
 }
 
 int	exit_game(t_game *game)
