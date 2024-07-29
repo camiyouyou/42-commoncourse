@@ -83,7 +83,7 @@ char	**copy_map(char **map)
 	return (copy);
 }
 
-void	put_both(t_game *game, int j, int i, char *str)
+void	put_both(t_game *game, int j, int i)
 {
 	mlx_put_image_to_window(game->mlx, game->wdw, game->img_e,
 		j * 100, i * 100);
