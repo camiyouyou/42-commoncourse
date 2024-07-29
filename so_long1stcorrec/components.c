@@ -29,6 +29,7 @@ int	check_components(char **map, int i, int j, t_long *check)
 			}
 			if (map[i][j] == 'P')
 			{
+				// ajouter fonction check alrededores`
 				check->p = check_duplicate(check->p);
 			}
 			j++;
