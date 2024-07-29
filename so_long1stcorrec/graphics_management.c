@@ -49,7 +49,7 @@ void	key_vert(t_game *g, int p)
 			exit (1);
 		}
 		else
-			return ;
+			put_both(g, p, g->pos_x);
 	}
 	g->moves = g->moves + 1;
 	ft_put_action(g->moves);
@@ -84,7 +84,7 @@ void	key_horiz(t_game *g, int n)
 			exit(1);
 		}
 		else
-			//put both ;
+			put_both(g, g->pos_y, n);
 	}
 	g->moves = g->moves + 1;
 	ft_put_action(g->moves);
