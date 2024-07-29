@@ -21,6 +21,7 @@ void	flood_fill(char **map, t_long *game, int x, int y)
 	if (map[x][y] == 'C')
 	{
 		game->count_c = game->count_c + 1;
+		game->count_k = game->count_k + 1;
 		map[x][y] = 'K';
 		flood_fill(map, game, x +1, y);
 		flood_fill(map, game, x -1, y);
@@ -29,6 +30,8 @@ void	flood_fill(char **map, t_long *game, int x, int y)
 	}
 	else
 	{
+		game->n0 = game->n0 + 1;
+		game->count_k = game->count_k + 1;
 		map[x][y] = 'K';
 		flood_fill(map, game, x +1, y);
 		flood_fill(map, game, x -1, y);
@@ -36,7 +39,6 @@ void	flood_fill(char **map, t_long *game, int x, int y)
 		flood_fill(map, game, x, y -1);
 	}
 }
-// ajouter compteur de K vs. compte de C + compte de E + compte P
 
 int	main_algo(char **map, t_long *store)
 {
