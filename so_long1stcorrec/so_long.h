@@ -56,11 +56,13 @@ typedef struct game
 	void	*img_c;
 	void	*img_e;
 	void	*img_p;
+	void	*img_chat;
 	void	*path_0;
 	void	*path_1;
 	void	*path_c;
 	void	*path_e;
 	void	*path_p;
+	void	*path_chat;
 }	t_game;
 
 // ajouter get_next_line, split, join, strlen, strdup;
