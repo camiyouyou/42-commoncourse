@@ -83,7 +83,7 @@ void	key_horiz(t_game *g, int n)
 			exit(1);
 		}
 		else
-			return ;
+			//put both ;
 	}
 	g->moves = g->moves + 1;
 	ft_put_action(g->moves);
