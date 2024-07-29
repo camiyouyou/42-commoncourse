@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -29,6 +30,7 @@ typedef struct so_long
 	int		c;
 	int		n0;
 	int		count_c;
+	int		count_k;
 	int		x;
 	int		y;
 	int		pos_e_y;
