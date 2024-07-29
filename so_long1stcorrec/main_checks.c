@@ -23,5 +23,7 @@ int	check_map_main(char **map, t_long *check)
 		return (ft_printf("Error\n map is not surrounded by walls\n"));
 	if (check_components(map, 0, 0, check) == 1)
 		return (ft_printf("Error\n number of component error\n"));
+	if (check_access(check))
+		return (ft_printf("Error\n component not accessible"));
 	return (0);
 }
