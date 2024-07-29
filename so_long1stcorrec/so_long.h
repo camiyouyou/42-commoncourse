@@ -117,5 +117,6 @@ int				mem_ligne(char **map);
 char			**copy_map(char **map);
 int				check_walls(char **map, int i, int j);
 int				copy_map2(char **map, int i, int j, char **copy);
+void			put_both(t_game *game, int j, int i);
 
 #endif
