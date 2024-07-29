@@ -96,7 +96,7 @@ int	check_access(t_long *store)
 	int	total;
 	total = store->n0 + store->count_c;
 
-	if (total != store->k)
+	if (total == store->k)
 		return (1)
 	return (0);
 }
