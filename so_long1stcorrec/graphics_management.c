@@ -78,6 +78,7 @@ void	key_horiz(t_game *g, int n)
 	{
 		if (g->count_c == g->c_pos)
 		{
+			//put both then destroy window
 			mlx_destroy_window(g->mlx, g->wdw);
 			exit(1);
 		}
