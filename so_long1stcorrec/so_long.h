@@ -27,6 +27,7 @@ typedef struct so_long
 	int		p;
 	int		e;
 	int		c;
+	int		n0;
 	int		count_c;
 	int		x;
 	int		y;
