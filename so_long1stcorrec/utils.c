@@ -88,10 +88,11 @@ int	map_mng(int fd)
 		return (1);
 	}
 	map_copy = copy_map(map);
-	if (!main_algo(map_copy, store))
+	if (main_algo(map_copy, store) == 0)
 	{
 		free_map(map);
 		free_map(map_copy);
+		return (1);
 	}
 	free_map(map_copy);
 	show_map(map);
@@ -109,7 +110,8 @@ int	main(int argc, char **argv)
 		return (ft_printf("Error\nBad file name.\n"));
 	if (argc != 2)
 		return (ft_printf("Error\nNumber of argument(s) invalid.\n"));
-	if (check_extension(file_name, 0) == 0)
+	if (check_extension(file_name, 0) == 1)
 		return (ft_printf("Error\nBad extension.\n"));
-	map_mng(fd);
+	if (map_mng(fd) == 1)
+		return (ft_printf("Error\nBad flood fill.\n"));
 }

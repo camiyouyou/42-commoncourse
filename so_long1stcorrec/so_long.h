@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -118,5 +117,8 @@ char			**copy_map(char **map);
 int				check_walls(char **map, int i, int j);
 int				copy_map2(char **map, int i, int j, char **copy);
 void			put_both(t_game *game, int j, int i);
+void			suite_moov_n(t_game *g, int n);
+void			suite_moov_p(t_game *g, int p);
+void			draw_exit(t_game *g, int x, int y);
 
 #endif

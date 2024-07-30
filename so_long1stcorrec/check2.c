@@ -33,6 +33,7 @@ int	check_struct(char **map, int i, int j)
 
 int	check_exit(char **map, t_long *game, int x, int y)
 {
+	ft_printf("%c\n", map[y][x]);
 	if (game->c == game->count_c)
 	{
 		if (map[y][x] == 'K')
@@ -45,29 +46,21 @@ int	check_exit(char **map, t_long *game, int x, int y)
 		}
 	}
 	else
-		return (0);
+		return (1);
 }
 
 int	check_extension(char *name, int i)
 {
-	int	flag;
-
-	flag = 0;
 	i = 0;
-	while (name[i] && flag == 0)
+	while (name[i])
 	{
-		if (name[i] == '/')
-		{
-			if (name[i + 1] == '.')
-				flag = 1;
-		}
 		if (name[i] == '.')
 		{
-			if (name[i++] == 'b')
+			if (name[++i] == 'b')
 			{
-				if (name[i++] == 'e')
+				if (name[++i] == 'e')
 				{
-					if (name[i++] == 'r')
+					if (name[++i] == 'r')
 						return (0);
 					return (1);
 				}
@@ -77,8 +70,6 @@ int	check_extension(char *name, int i)
 		}
 		i++;
 	}
-	if (flag == 1)
-		return (0);
 	return (1);
 }
 

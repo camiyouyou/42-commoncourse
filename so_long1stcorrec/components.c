@@ -99,6 +99,8 @@ void	show_map(char **map)
 	check_img(g.img_e);
 	g.img_p = mlx_xpm_file_to_image(g.mlx, g.path_p, &width, &height);
 	check_img(g.img_p);
+	g.img_chat = mlx_xpm_file_to_image(g.mlx, g.path_chat, &width, &height);
+	check_img(g.img_chat);
 	put_texture(&g, map);
 	mlx_key_hook(g.wdw, mng_input, &g);
 	mlx_hook(g.wdw, 17, 0, exit_game, &g);

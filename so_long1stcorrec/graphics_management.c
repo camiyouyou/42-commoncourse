@@ -20,7 +20,7 @@ void	texture_init(t_game *game)
 	game->path_c = "xpm/fraise1.xpm";
 	game->path_e = "xpm/tapis1.xpm";
 	game->path_p = "xpm/chat1.xpm";
-	game->path_chat = "xpm/chat.xpm";
+	game->path_chat = "xpm/overlay.xpm";
 }
 
 int	exit_game(t_game *game)
@@ -49,14 +49,13 @@ void	key_vert(t_game *g, int p)
 			exit (1);
 		}
 		else
-			put_both(g, p, g->pos_x);
+		{
+			draw_exit(g, g->pos_x, p);
+			g->pos_y = p;
+		}
 	}
-	g->moves = g->moves + 1;
-	ft_put_action(g->moves);
-	mlx_put_image_to_window(g->mlx, g->wdw, g->img_0,
-		g->pos_x * 100, g->pos_y * 100);
-	mlx_put_image_to_window(g->mlx, g->wdw, g->img_p, g->pos_x * 100, p * 100);
-	g->pos_y = p;
+	else
+		suite_moov_p(g, p);
 }
 
 void	ft_put_action(int nb)
@@ -79,17 +78,15 @@ void	key_horiz(t_game *g, int n)
 	{
 		if (g->count_c == g->c_pos)
 		{
-			//put both then destroy window
 			mlx_destroy_window(g->mlx, g->wdw);
 			exit(1);
 		}
 		else
-			put_both(g, g->pos_y, n);
+		{
+			draw_exit(g, n, g->pos_y);
+			g->pos_x = n;
+		}
 	}
-	g->moves = g->moves + 1;
-	ft_put_action(g->moves);
-	mlx_put_image_to_window(g->mlx, g->wdw, g->img_0,
-		g->pos_x * 100, g->pos_y * 100);
-	mlx_put_image_to_window(g->mlx, g->wdw, g->img_p, n * 100, g->pos_y * 100);
-	g->pos_x = n;
+	else
+		suite_moov_n(g, n);
 }
