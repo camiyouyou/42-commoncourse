@@ -31,7 +31,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		i++;
 	}
 	j = 0;
-	while ((i + j + 1) <= len && s2[j] != '\0')
+	while ((i + j) < len && s2[j] != '\0')
 	{
 		str[i + j] = s2[j];
 		j++;

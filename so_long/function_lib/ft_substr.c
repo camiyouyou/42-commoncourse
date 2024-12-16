@@ -12,7 +12,7 @@
 
 #include "../so_long.h"
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
 	size_t	i;
@@ -20,7 +20,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 
 	if (s == NULL)
 		return (NULL);
-	i = ft_strlen(s);
+	i = ft_strlen((char *)s);
 	if (start >= i)
 		return (ft_strdup(""));
 	substring_len = i - start;
@@ -29,7 +29,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (str == NULL)
 		return (NULL);
-	ft_strlcpy(str, s + start, len + 1);
+	ft_strlcpy(str, (char *)(s + start), len + 1);
 	return (str);
 }
 

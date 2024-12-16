@@ -1,18 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: croussea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/28 20:34:38 by croussea          #+#    #+#             */
+/*   Updated: 2024/07/28 20:34:41 by croussea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-void	free_map(char **map)
+void	put_image(t_game *game, int j, int i, char *str)
 {
-	int	i;
-	
-	i = 0;
-	ft_printf("freeing map\n");
-	while (map[i])
-        {
-		  free(map[i]);
-		  i++;
-	}
-	free(map);
-
+	mlx_put_image_to_window(game->mlx, game->wdw, str,
+		j * 100, i * 100);
 }
 
 void	put_texture(t_game *game, char **map)
@@ -33,25 +36,22 @@ void	put_texture(t_game *game, char **map)
 				mlx_put_image_to_window(game->mlx, game->wdw, game->img_1,
 					j * 100, i * 100);
 			if (map[i][j] == 'C')
-				mlx_put_image_to_window(game->mlx, game->wdw, game->img_c,
-					j * 100, i * 100);
+				put_image(game, j, i, game->img_c);
 			if (map[i][j] == 'E')
-				mlx_put_image_to_window(game->mlx, game->wdw, game->img_e,
-					j * 100, i * 100);
+				put_image(game, j, i, game->img_e);
 			if (map[i][j] == 'P')
-				mlx_put_image_to_window(game->mlx, game->wdw, game->img_p,
-					j * 100, i * 100);
+				put_image(game, j, i, game->img_p);
 			j++;
 		}
 		i++;
 	}
-	ft_printf("texture set succesfully\n");
 }
 
-char **save_map(char **map, int fd)
+char	**save_map(char **map, int fd)
 {
 	char	*line;
 	char	*full_line;
+	char	*aux;
 
 	full_line = NULL;
 	line = malloc(sizeof(char));
@@ -64,17 +64,17 @@ char **save_map(char **map, int fd)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		full_line = ft_strjoin(full_line, line);
-		//remove after debug
-		ft_printf("%s\n", full_line);
+		aux = ft_strjoin(full_line, line);
+		free(full_line);
+		full_line = aux;
 	}
 	map = ft_split(full_line, '\n');
 	free(full_line);
-	ft_printf("map saved succesfully\n");
+	free(line);
 	return (map);
 }
 
-int map_mng(int fd)
+int	map_mng(int fd)
 {
 	char	**map;
 	char	**map_copy;
@@ -92,16 +92,13 @@ int map_mng(int fd)
 		return (1);
 	}
 	map_copy = copy_map(map);
-	if (!main_algo(map_copy, store))
+	if (main_algo(map_copy, store) == 0)
 	{
-	  free_map(map);
-	  ft_printf("freed map\n");
-	  free_map(map_copy);
-	  ft_printf("freed map copy\n");
-	  return(ft_printf("Error\nMap cannot be played\n"));
+		free_map(map);
+		free_map(map_copy);
+		return (1);
 	}
 	free_map(map_copy);
-	ft_printf("map copy freed succesfully\n");
 	show_map(map);
 	return (0);
 }
@@ -117,7 +114,8 @@ int	main(int argc, char **argv)
 		return (ft_printf("Error\nBad file name.\n"));
 	if (argc != 2)
 		return (ft_printf("Error\nNumber of argument(s) invalid.\n"));
-	if (check_extension(file_name, 0) == 0)
+	if (check_extension(file_name, 0) == 1)
 		return (ft_printf("Error\nBad extension.\n"));
-	map_mng(fd);
+	if (map_mng(fd) == 1)
+		return (ft_printf("Error\nBad flood fill.\n"));
 }

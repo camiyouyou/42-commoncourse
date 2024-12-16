@@ -96,4 +96,3 @@ char	**ft_split(char const *s, char c)
 	new = split(s, c, new, len);
 	return (new);
 }
-

@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   components.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: croussea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/28 17:44:43 by croussea          #+#    #+#             */
+/*   Updated: 2024/07/28 17:59:41 by croussea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	check_components(char **map, int i, int j, t_long *check)
 {
-	ft_printf("checking components\n");
 	while (map[i])
 	{
 		j = 0;
@@ -13,20 +24,15 @@ int	check_components(char **map, int i, int j, t_long *check)
 			if (map[i][j] == 'E')
 			{
 				check->e = check_duplicate(check->e);
-				(ft_printf("exit\n"));
 			}
 			if (map[i][j] == 'P')
 			{
 				check->p = check_duplicate(check->p);
-				(ft_printf("person\n"));
 			}
 			j++;
 		}
 		i++;
 	}
-	ft_printf("collectible : %d", check->c);
-	ft_printf("exit : %d", check->e);
-	ft_printf("perso : %d", check->p);
 	if (check->c > 0 && check->e == 1 && check->p == 1)
 		return (0);
 	else
@@ -35,12 +41,68 @@ int	check_components(char **map, int i, int j, t_long *check)
 
 int	check_duplicate(int X)
 {
-	ft_printf("checking duplicates\n");
 	if (X == 0)
 		return (1);
 	else
 	{
-	        ft_printf("duplicate found\n");
 		return (2);
 	}
+}
+
+void	info_map(char **map, t_game *game)
+{
+	int	y;
+	int	x;
+
+	game->moves = 0;
+	game->c_pos = 0;
+	game->count_c = 0;
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] == 'C')
+				game->c_pos = game->c_pos + 1;
+			if (map[y][x] == 'P')
+			{
+				game->pos_x = x;
+				game->pos_y = y;
+			}
+			x++;
+		}
+		y++;
+	}
+	game->len_y = y;
+	game->len_x = x;
+}
+
+void	show_map(char **map)
+{
+	int		width;
+	int		height;
+	t_game	g;
+
+	texture_init(&g);
+	info_map(map, &g);
+	map_to_struct(map, &g, 0, 0);
+	g.mlx = mlx_init();
+	g.wdw = mlx_new_window(g.mlx, g.len_x * 100, g.len_y * 100, "so_long");
+	g.img_0 = mlx_xpm_file_to_image(g.mlx, g.path_0, &width, &height);
+	check_img(g.img_0);
+	g.img_1 = mlx_xpm_file_to_image(g.mlx, g.path_1, &width, &height);
+	check_img(g.img_1);
+	g.img_c = mlx_xpm_file_to_image(g.mlx, g.path_c, &width, &height);
+	check_img(g.img_c);
+	g.img_e = mlx_xpm_file_to_image(g.mlx, g.path_e, &width, &height);
+	check_img(g.img_e);
+	g.img_p = mlx_xpm_file_to_image(g.mlx, g.path_p, &width, &height);
+	check_img(g.img_p);
+	g.img_chat = mlx_xpm_file_to_image(g.mlx, g.path_chat, &width, &height);
+	check_img(g.img_chat);
+	put_texture(&g, map);
+	mlx_key_hook(g.wdw, mng_input, &g);
+	mlx_hook(g.wdw, 17, 0, exit_game, &g);
+	mlx_loop(g.mlx);
 }
